@@ -1,0 +1,32 @@
+body{
+	font: 16px/28px 'Microsoft YaHei';
+}
+h1{
+	text-align: center;
+	font-weight: 400;
+}
+.shurukuang{
+	color: #666;
+	width: 170px;
+}
+.serch{
+	color: #888;
+	text-align: center;
+	font-size: 12px;
+}
+a{
+	text-decoration: none;
+}
+.sousuo{
+	font-weight: 700;
+}
+p{
+	text-indent: 2em;
+}
+.china{
+	text-align: center;
+}
+.footer{
+	color: #888888;
+	font-size: 12px;
+}
