@@ -1,0 +1,50 @@
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			body{
+				background-color: #F5F5F5;
+			}
+			a{
+				text-decoration: none;
+				color: #333;
+			}
+			.chanpin{
+				width: 298px;
+				height: 415px;
+				background-color: #FFFFFF;
+				margin: 10px auto;
+			}
+			.chanpin img{
+				width: 100%;
+			}
+			.review{
+				/* p标签要给高度 */
+				height: 70px;
+				font-size: 14px;
+				padding: 0 28px;
+				margin-top: 30px;
+			}
+			.pingjia{
+				font-size: 12px;
+				color: #B0B0B0;
+				padding: 0 28px;
+				margin-top: 20px;
+			}
+			.chanpin_dibu{
+				margin-top: 15px;
+				padding: 0 28px;
+			}
+			.chanpin_dibu h4{
+				font-size: 14px;
+				display: inline-block;
+				font-weight: 400;
+			}
+			.chanpin_dibu span{
+				color: #FF6700;
+				font-size: 10px;
+			}
+			.chanpin_dibu em{
+				font-style: normal;
+				margin: 0 6px 0 20px;
+			}
