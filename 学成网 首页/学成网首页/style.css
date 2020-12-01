@@ -1,0 +1,287 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+li{
+	list-style: none;
+}
+a{
+	text-decoration: none;
+}
+body{
+	background-color: #f3f5f7;
+	height: 3000px;
+}
+.clearfix::before,.clearfix:after{
+	content: "";
+	display: table;
+}
+.clearfix:after{
+	clear: both;
+}
+.clearfix{
+	*zoom:1;
+}
+.banxin{
+	width: 1200px;
+	margin: 0 auto;
+}
+.header{
+	height: 42px;
+	/* background-color: pink; */
+	margin: 30px auto;/* 此处层叠版心里面的margin */
+}
+.logo{
+	float: left;
+	width: 198px;
+	height: 42px;
+	/* background-color: #FF6700; */
+}
+.nav{
+	float: left;
+	margin-left: 60px;
+}
+.nav ul li{
+	float: left;
+	margin: 0 15px;
+}
+.nav ul li a{
+	display: block;
+	height: 42px;
+	padding: 0 10px;
+	line-height: 42px;
+	font-size: 14px;
+	color: #050505;
+}
+.nav ul li a:hover{
+	border-bottom: 2px solid #00a4ff;
+	color: #00a4ff;
+}
+.search{
+	float: left;
+	width: 412px;
+	height: 42px;
+	margin-left: 70px;
+}
+.search input{
+	float: left;
+	width: 345px;
+	height: 40px;
+	border: 1px solid #00a4ff;
+	border-right: 0;
+	font-size: 14px;
+	outline: none;
+	color: #bfbfbf;
+	padding-left: 15px;
+}
+.search button{
+	float: left;
+	height: 42px;
+	width: 50px;
+	margin-top: 1px;
+	border: 0;
+	background: url(../img/btn.png) no-repeat;
+}
+.user{
+	float: right;
+	margin-right: 30px;
+	text-align: center;
+	line-height: 42px;
+	font-size: 14px;
+	color: #666;
+}
+.user img{
+	vertical-align: middle;
+}
+.banner{
+	height: 421px;
+	background-color: #1c036c;
+}
+.banner .banxin{
+	height: 421px;
+	background: url(../img/banner2.png) no-repeat top center;
+}
+.subnav{
+	float: left;
+	width: 190px;
+	height: 421px;
+	background: rgba(0,0,0,.3);
+}
+.subnav ul li{
+	height: 46px;
+	line-height: 46px;	
+	padding: 0 20px;
+}
+.subnav ul li a{
+	display: block;
+	font-size: 14px;
+	color: #fff;
+}
+.subnav ul li a span{
+	float: right;
+}
+.subnav ul li a:hover{
+	color: #00a4ff;
+}
+.course{
+	float: right;
+	width: 230px;
+	height: 300px;
+	background-color: #fff;
+	margin-top: 50px;/* 浮动的盒子不会有外边距合并的问题 */
+}
+.course h2{
+	height: 48px;
+	background-color: #9bceea;
+	text-align: center;
+	line-height: 48px;
+	font-size: 18px;
+	color: #fff;
+}
+.bd{
+	padding: 0 20px;
+}
+.bd ul li{
+	padding: 14px 0;
+	border-bottom: 1px solid #ccc;
+}
+.bd ul li h4{
+	font-size: 16px;
+	color: #4e4e4e;
+}
+.bd ul li p{
+	font-size: 12px;
+	color: #a5a5a5;
+}
+.bd .more{
+	display: block;
+	height: 38px;
+	margin-top: 6px;
+	border: 1px solid #00a4ff;
+	text-align: center;
+	line-height: 38px;
+	color: #00a4ff;
+	font-size: 16px;
+	font-weight: 700;
+}
+.goods{
+	height: 60px;
+	margin-top: 10px;
+	background-color: #fff;
+	box-shadow: 0 2px 3px 3px rgba(0,0,0,.1);
+	line-height: 60px;/* 行高会继承的 */
+}
+.goods h3{
+	float: left;
+	margin-left: 30px;
+	font-size: 16px;
+	color: #00a4ff;
+}
+.goods ul{
+	float: left;
+	margin-left: 30px;
+}
+.goods ul li{
+	float: left;
+}
+.goods ul li a{
+	padding: 0 30px;
+	font-size: 16px;
+	color: #050505;
+	border-left: 1px solid #ccc;
+}
+.xingqu{
+	float: right;
+	margin-right: 30px;
+	font-size: 16px;
+	color: #00a4ff;
+}
+.box{
+	margin-top: 30px;
+}
+.box-head{
+	height: 45px;
+}
+.box-head h3{
+	float: left;
+	font-weight: 400;
+	font-size: 20px;
+	color: #494949;
+}
+.box-head a{
+	float: right;
+	font-size: 12px;
+	color: #a5a5a5;
+	margin-top: 10px;
+	margin-right: 30px;
+}
+.box-body ul li{
+	float: left;
+	width: 228px;
+	height: 270px;
+	background-color: #fff;
+	margin-right: 15px;
+	margin-bottom: 15px;
+}
+.box-body ul{
+	width: 1225px;
+}
+.box-body ul li img{
+	width: 100%;
+}
+.box-body ul li h4{
+	margin: 20px 20px 20px 25px;
+	font-size: 14px;
+	color: #050505;
+	font-weight: 400;
+}
+.box-body .xinxi{
+	margin: 0 20px 0 25px;
+	font-size: 12px;
+	color: #999;
+}
+.box-body .xinxi span{
+	color: #ff7c2d;
+}
+.footer{
+	height: 415px;
+	background-color: #fff;
+}
+.footer .banxin{
+	padding: 35px;
+}
+.le{
+	float: left;
+}
+.ri{
+	float: right;
+}
+.le p{
+	font-size: 12px;
+	color: #666;
+	margin: 20px 0 15px 0;
+}
+.le .app{
+	display: block;
+	width: 118px;
+	height: 33px;
+	border: 1px solid #00a4ff;
+	text-align: center;
+	line-height: 33px;
+	font-size: 16px;
+}
+.ri dl dt{
+	font-size: 16px;
+	color: #333;
+	margin-bottom: 5px;
+}
+.ri dl dd a{
+	color: #333;
+	font-size: 12px;
+}
+.ri dl{
+	float: left;
+	margin-left: 100px;
+}
+
+
