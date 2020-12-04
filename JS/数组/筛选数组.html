@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+		//方法一：
+		//将此数组中大于10的数字筛选出来 然后放到一个新数组中
+		// var arr = [12, 2, 4, 46, 21, 8, 23, 6];
+		// var newArr = [];
+		// var j = 0;
+		// for (var i = 0; i < arr.length; i++) {
+		// 	if (arr[i] > 10) {//遍历旧数组  筛选出所需要的元素
+		// 		newArr[j] = arr[i]//新数组应该从0开始
+		// 		j++;
+		// 	}
+		// }
+		// console.log(newArr);
+
+
+
+		//方法二：
+		var arr = [12, 2, 4, 46, 21, 8, 23, 6];
+		var newArr = [];//此时newArr.length  为0
+		for (var i = 0; i < arr.length; i++) {
+			if (arr[i] > 10) {
+				newArr[newArr.length] = arr[i];
+			}
+		}
+		console.log(newArr);
+	</script>
+</html>
