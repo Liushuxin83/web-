@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+		function Star(uname, uage, usex) {
+			this.name = uname;
+			this.age = uage;
+			this.sex = usex;
+			this.sing = function(argu) {
+				console.log(argu);
+			}
+		}
+        //可以批量产生对象  调用构造函数 必须使用new 
+		//new  关键字执行过程
+		//1  new构造函数可以在内存中创建一个新对象
+		//2  this 就会指向刚才创建的空对象
+		//3  执行构造函数里面的代码 给这个空对象添加属性和方法
+		//4  返回这个对象
+		var lsx = new Star('刘舒新', 19, '男');
+		var ztj = new Star('张天俊', 18, '女');
+		var zxt = new Star('张小天', 10, '女');
+		lsx.sing('liushuxin 刘舒新');
+		console.log(ztj.name);
+
+
+
+		//遍历对象的属性
+		for (var k in lsx) {
+			console.log(k);//k  变量 输出的是属性名
+			console.log(lsx[k]);//   lsx【k】  输出的是属性值
+		}
+	</script>
+</html>
