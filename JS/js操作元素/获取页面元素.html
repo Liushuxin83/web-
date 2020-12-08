@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="time">12345</div>
+		<ul>
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+			<li>5</li>
+		</ul>
+		<ul id="u">
+			<li>6</li>
+			<li>7</li>
+			<li>8</li>
+			<li>9</li>
+			<li>10</li>
+		</ul>
+		
+		
+		
+		
+		<div class="box">盒子1</div>
+		<div class="box">盒子2</div>
+		<div id="nav">
+			<ul id="a">
+				<li>首页</li>
+				<li>产品</li>
+			</ul>
+		</div>
+	</body>
+	<script type="text/javascript">
+		//根据id获取
+		var time = document.getElementById('time');
+		console.log(time);
+		console.log(typeof time);
+		console.dir(time); //打印返回的元素对象，更好的查看里面的属性
+         
+		 //根据标签名获取
+		var lis = document.getElementsByTagName('li');
+		console.log(lis); //伪数组形式存储
+		console.log(lis[3]);
+		for (var i = 0; i < lis.length; i++) {
+			console.log(lis[i]);
+		}
+
+		var u = document.getElementById('u');
+		var ulis = u.getElementsByTagName('li');
+		console.log(ulis);
+		
+		
+		//H5 新增
+		//通过类名获得
+		var box=document.getElementsByClassName('box');
+		console.log(box);//伪数组存储
+		
+		
+		//document.querySelector（）  返回指定选择器的第一个元素对象，（）里面的选择器需要加符号 # .
+		//document.querySelectorAll（）  返回指定选择器的所有元素对象的集合，以伪数组形式存储
+		var box1=document.querySelector('.box');
+		console.log(box1);
+		var nav=document.querySelector('#nav');
+		console.log(nav);
+		
+		
+		var boxs=document.querySelectorAll('.box');
+		console.log(boxs);
+		var abb=document.getElementById('a');
+		var lis=abb.querySelectorAll('li');
+		console.log(lis);
+		
+		
+		//获取body元素
+		var bodys=document.body;
+		console.log(bodys);
+		console.log(typeof bodys);
+		//获取html元素
+		var htmls=document.documentElement;
+		console.log(htmls);
+		console.log(typeof htmls);
+	</script>
+</html>

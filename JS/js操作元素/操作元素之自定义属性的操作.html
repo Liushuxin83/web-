@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="div1" index='1'>
+		</div>
+		<div id="div2">
+		</div>
+		<div class="div3">
+		</div>
+	</body>
+	<script type="text/javascript">
+		var div1 = document.getElementById('div1');
+		var div2 = document.getElementById('div2');
+		var div3 = document.getElementsByClassName('div3');
+		//获取属性值
+		//1  获取元素的属性   主要获取内置属性
+		console.log(div1.id)
+		console.log(div1.index); //返回  undefined
+		//2  element.getAttribute('属性')  主要获取自定义属性
+		console.log(div1.getAttribute('id'));
+		console.log(div1.getAttribute('index'));
+
+
+		//设置属性值
+		//1
+		div1.id = 'div100';
+		console.log(div1.id);
+		//2
+		div2.setAttribute('id', 'div200');
+		console.log(div2.getAttribute('id'));
+		div1.setAttribute('index', '1000');
+		console.log(div1.getAttribute('index'));
+		div3.className = 'div300';
+		console.log(div3.className);
+		
+		
+		//移除属性
+		div1.removeAttribute('index');
+	</script>
+</html>
