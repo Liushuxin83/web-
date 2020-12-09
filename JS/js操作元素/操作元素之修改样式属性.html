@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			input {
+				color: #999;
+			}
+		</style>
+	</head>
+	<body>
+		<input type="text" value="手机" />
+	</body>
+	<script type="text/javascript">
+		//显示隐藏文本框中的内容
+		//1 如果获取焦点，判断表单里的内容是否为默认文字，如果是默认文字，就清空表单内容
+		//2 如果失去焦点，判断表单里是否为空，如果为空，则表单内容改为默认文字
+		var text = document.querySelector('input');
+		text.onfocus = function() {
+			//console.log('dendao');
+			if (this.value === '手机') {
+				text.value = '';
+			}
+			this.style.color = '#333';
+		}
+		text.onblur = function() {
+			//console.log('shiqu ');
+			if (this.value === '') {
+				text.value = '手机';
+			}
+			this.style.color = '#999';
+		}
+	</script>
+</html>
