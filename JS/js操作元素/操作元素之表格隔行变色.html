@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			* {
+				margin: 0px;
+			}
+
+			.tab {
+				width: 400px;
+				margin: 0 auto;
+				border: 1px solid red;
+				border-collapse: collapse;
+				text-align: center;
+
+			}
+
+			.tab_head {
+				background-color: #00A4FF;
+			}
+
+			.bg {
+				background-color: #008000;
+			}
+		</style>
+	</head>
+	<body>
+		<table class="tab" border="1px">
+			<thead>
+				<tr class="tab_head">
+					<th>排行</th>
+					<th>数字</th>
+					<th>日期</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>1</td>
+					<td>1</td>
+					<td>1</td>
+				</tr>
+				<tr>
+					<td>2</td>
+					<td>2</td>
+					<td>2</td>
+				</tr>
+				<tr>
+					<td>3</td>
+					<td>3</td>
+					<td>3</td>
+				</tr>
+				<tr>
+					<td>4</td>
+					<td>4</td>
+					<td>4</td>
+				</tr>
+				<tr>
+					<td>5</td>
+					<td>5</td>
+					<td>5</td>
+				</tr>
+				<tr>
+					<td>6</td>
+					<td>6</td>
+					<td>6</td>
+				</tr>
+			</tbody>
+		</table>
+	</body>
+	<script type="text/javascript">
+		
+		//获取 tbody里面的所有行
+		var trs = document.querySelector('tbody').querySelectorAll('tr');
+		//利用for循环 绑定注册事件
+		for (var i = 0; i < trs.length; i++) {
+			//鼠标经过事件 onmouseover
+			trs[i].onmouseover = function() {
+				//console.log(11111);
+				this.className = 'bg';
+			}
+			//鼠标离开事件  onmouseout
+			trs[i].onmouseout = function() {
+				this.className = '';
+			}
+		}
+	</script>
+</html>

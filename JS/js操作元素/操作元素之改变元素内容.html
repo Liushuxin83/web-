@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			div {
+				width: 300px;
+				height: 20px;
+				background-color: pink;
+			}
+		</style>
+	</head>
+	<body>
+		<button type="button">显示时间</button>
+		<div>
+			某个时间
+		</div>
+		<div id="inhtml">
+
+		</div>
+		<div id="intext">
+
+		</div>
+		<p>
+			我是文字
+			<span>
+				woshiliushuxin
+			</span>
+		</p>
+	</body>
+	<script type="text/javascript">
+		var btn = document.querySelector('button');
+		var div = document.querySelector('div');
+		btn.onclick = function() {
+			div.innerText = getDate();
+		}
+
+		function getTime() {
+			var timer = new Date();
+			var h = timer.getHours();
+			h = h < 10 ? '0' + h : h; //小于10 补0
+			var m = timer.getMinutes();
+			m = m < 10 ? '0' + m : m;
+			var s = timer.getSeconds();
+			s = s < 10 ? '0' + s : s;
+			return h + ':' + m + ':' + s;
+		}
+
+		function getDate() {
+			var date = new Date();
+			var year = date.getFullYear();
+			var month = date.getMonth() + 1;
+			var da = date.getDate();
+			var day = date.getDay();
+			var arr = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'];
+			return '今天是：' + year + '年 ' + month + '月 ' + da + '日 ' + arr[day];
+		}
+
+
+		//innerText 与  innerHTML的区别
+		var inhtml = document.querySelector('#inhtml');//识别html标签
+		var intext = document.querySelector('#intext');//不识别html标签
+		inhtml.innerHTML = '<strong>来吧</strong>123456';
+		intext.innerText = '<strong>来吧</strong>7890';
+		
+		var p=document.querySelector('p');
+		console.log(p.innerText);//除了不识别html标签之外  还会去除换行和空格
+		console.log('---------------');
+		console.log(p.innerHTML);//保留空格和换行
+	</script>
+</html>
