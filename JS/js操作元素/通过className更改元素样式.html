@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			.a{
+				width: 100px;
+				height: 100px;
+				background-color: #ccc;
+			}
+
+			.change {
+				width: 500px;
+				height: 500px;
+				margin-top: 50px;
+				background-color: red;
+				font-size: 100px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="a">
+			文本
+		</div>
+	</body>
+	<script type="text/javascript">
+		var div = document.querySelector('div');
+		div.onclick = function() {
+			//类名样式操作适合  样式较多，功能复制的情况，会覆盖原来的类名
+			//div.className = 'change';
+			div.className = 'a change';
+		}
+	</script>
+</html>
