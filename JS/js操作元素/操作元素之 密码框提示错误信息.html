@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			#box {
+				width: 600px;
+				border: 1px solid transparent;
+			}
+
+			#box input {
+				width: 250px;
+			}
+
+			.message {
+				display: inline-block;
+				background: url(images/mess.png) no-repeat left center;
+				padding-left: 20px;
+			}
+			
+			.wrong {
+				color: red;
+				background: url(images/wrong.png) no-repeat left center;
+			}
+
+			.right {
+				color: green;
+				background: url(images/right.png) no-repeat left center;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<input type="password" value="" />
+			<p class="message">请输入6到16位密码</p>
+		</div>
+	</body>
+	<script type="text/javascript">
+		//案例分析
+		//1  首先判断的事件是表单是否失去焦点
+		//2  如果输入正确则提示正确信息
+		//3  如果输入不是6到16位，则提示错误
+		//4  因为样式变化较多 用className
+		var input = document.querySelector('input');
+		var message = document.querySelector('.message');
+		input.onblur = function() {
+			if ((this.value.length < 6 && this.value.length > 0) || this.value.length > 16) {
+				//console.log('错误');
+				message.className = 'message wrong';
+				message.innerHTML = '你输入的位数不对，要求是6到16位';
+			} else if (this.value.length <= 0) {
+				message.className = 'message';
+			} else {
+				message.className = 'message right';
+				message.innerHTML = '你输入的位数正确';
+			}
+		}
+	</script>
+</html>
