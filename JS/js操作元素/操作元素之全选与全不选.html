@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			* {
+				margin: 0px;
+			}
+
+			.tab {
+				width: 400px;
+				margin: 0 auto;
+				border: 1px solid red;
+				border-collapse: collapse;
+				text-align: center;
+
+			}
+
+			.tab_head {
+				background-color: #00A4FF;
+			}
+
+			.bg {
+				background-color: #008000;
+			}
+		</style>
+	</head>
+	<body>
+		<table class="tab" border="1px">
+			<thead>
+				<tr class="tab_head">
+					<th><input type="checkbox" id="head_checkbox" /></th>
+					<th>排行</th>
+					<th>数字</th>
+					<th>日期</th>
+				</tr>
+			</thead>
+			<tbody id="tbody_checkbox">
+				<tr>
+					<td><input type="checkbox" /></td>
+					<td>1</td>
+					<td>1</td>
+					<td>1</td>
+				</tr>
+				<tr>
+					<td><input type="checkbox" /></td>
+					<td>2</td>
+					<td>2</td>
+					<td>2</td>
+				</tr>
+				<tr>
+					<td><input type="checkbox" /></td>
+					<td>3</td>
+					<td>3</td>
+					<td>3</td>
+				</tr>
+				<tr>
+					<td><input type="checkbox" /></td>
+					<td>4</td>
+					<td>4</td>
+					<td>4</td>
+				</tr>
+				<tr>
+					<td><input type="checkbox" /></td>
+					<td>5</td>
+					<td>5</td>
+					<td>5</td>
+				</tr>
+				<tr>
+					<td><input type="checkbox" /></td>
+					<td>6</td>
+					<td>6</td>
+					<td>6</td>
+				</tr>
+			</tbody>
+		</table>
+	</body>
+	<script type="text/javascript">
+		//获取 tbody里面的所有行
+		var trs = document.querySelector('tbody').querySelectorAll('tr');
+		//利用for循环 绑定注册事件
+		for (var i = 0; i < trs.length; i++) {
+			//鼠标经过事件 onmouseover
+			trs[i].onmouseover = function() {
+				//console.log(11111);
+				this.className = 'bg';
+			}
+			//鼠标离开事件  onmouseout
+			trs[i].onmouseout = function() {
+				this.className = '';
+			}
+		}
+
+        
+		//全选和全不选案例分析
+		//先设置全选和全不选那个复选框，之后用for循环设置剩下的复选框
+		//下面的复选框全选上的话，第一个复选框才会选上，如果下面的复选框只有一个没有选上的话，第一个复选框为未选定状态
+		//可以设置一个变量 flag来控制是否选中
+		var head_checkbox = document.querySelector('#head_checkbox');
+		var tbody_checkboxs = document.querySelector('#tbody_checkbox').querySelectorAll('input');
+		//
+		head_checkbox.onclick = function() {
+			//console.log(this.checked);//复选框选中之后返回true  没有选中的话返回false
+			for (var i = 0; i < tbody_checkboxs.length; i++) {
+				tbody_checkboxs[i].checked = this.checked;
+			}
+		}
+		for (var i = 0; i < tbody_checkboxs.length; i++) {
+			tbody_checkboxs[i].onclick = function() {
+				var flag = true;
+				for (var i = 0; i < tbody_checkboxs.length; i++) {
+					//每当下面的复选框选中就要检查其他的复选框有没有选中
+					if (!tbody_checkboxs[i].checked) { //如果没有选中
+						flag = false;
+						break;//只要下面的复选框有一个没有选中  跳出循环就可以了，此时顶端的复选框必不选中
+					}
+				}
+				head_checkbox.checked = flag;
+			}
+		}
+	</script>
+</html>
