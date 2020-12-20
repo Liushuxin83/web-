@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+
+			.tab {
+				margin: 0 auto;
+				border: 1px solid red;
+				border-collapse: collapse;
+			}
+
+			.tab td input {
+				font-size: 30px;
+			}
+
+			.tab th {
+				font-size: 40px;
+			}
+
+			.tab tr {
+				font-size: 30px;
+			}
+		</style>
+	</head>
+	<body>
+		<table border="1" class="tab">
+			<tr>
+				<th>支出</th>
+				<th>收入</th>
+			</tr>
+			<tr>
+				<td><input type="" name="" id="" value="" /></td>
+				<td><input type="" name="" id="" value="" /></td>
+			</tr>
+			<tr>
+				<td><input type="" name="" id="" value="" /></td>
+				<td><input type="" name="" id="" value="" /></td>
+			</tr>
+			<tr>
+				<td><input type="" name="" id="" value="" /></td>
+				<td><input type="" name="" id="" value="" /></td>
+			</tr>
+			<tr>
+				<td><input type="" name="" id="" value="" /></td>
+				<td><input type="" name="" id="" value="" /></td>
+			</tr>
+			<tr>
+				<td><button type="button">总额：</button><input type="text" style="width: 100px;" id="zonge" /></td>
+				<td></td>
+			</tr>
+		</table>
+		<button type="button"></button>
+	</body>
+	<script type="text/javascript">
+		var inputs = document.querySelector('.tab').querySelectorAll('input');
+		var button = document.querySelector('button');
+		var zonge = document.getElementById('zonge');
+		var sum = 0;
+		var str = '';
+		button.onclick = function() {
+			for (var i = 0; i < inputs.length; i++) {
+				if(i % 2 == 0){
+					if(inputs[i].value === ''){
+					inputs[i].value = '0';
+					}
+					sum = sum + parseInt(inputs[i].value);
+				}
+				
+				
+			}
+			zonge.value = str + sum;
+		}
+	</script>
+</html>
