@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+		//获得Date 总的毫秒数（时间戳）  不是当前毫秒数  而是距离1970年1月1日过了多少毫秒
+		//1  通过valueOf（）   或    getTime（）
+		var date = new Date();
+		console.log(date.valueOf());
+		console.log(date.getTime());
+
+		//2   简单的写法  (最常用)记住
+		var date1 = +new Date();
+		console.log(date1);
+		
+		//3  H5 新增  获得总的毫秒数
+		console.log(Date.now());
+	</script>
+</html>
