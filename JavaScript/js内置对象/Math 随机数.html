@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+		console.log(Math.random());
+
+		//得到两个数之间的随机数
+		function getRandom(min, max) {
+			return Math.floor(Math.random() * (max - min + 1)) + min;
+		}
+		console.log(getRandom(1,10));
+		
+		
+		//随机点名 案例
+		var arr=['刘舒新','张小天','张天俊','刘新','刘舒'];
+		console.log(arr[getRandom(0,arr.length-1)]);
+	</script>
+</html>

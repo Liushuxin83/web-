@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+		var arr = [23, 6, 5, 74, 89, 13];
+		//返回给定的数字中的最大值 如果规定的参数中至少有一个参数无法被转换成数字，则会返回NaN
+		console.log(Math.max()); //返回 -Infinity 负无穷大
+		console.log(Math.max.apply(null, arr)); //  返回数组中的最大值
+		console.log(Math.min.apply(null, arr)); //  返回数组中的最小值
+		console.log(Math.max(8, 7, 4, 9));
+		console.log(Math.max(-1, -4, -8));
+		console.log(Math.max(11, 12, '123'));
+		console.log(Math.max(11, 12, 'ss'));
+
+
+		//利用对象封装自己数学对象
+		var myMath = {
+			PI: 3.14, //得用逗号隔开
+			max: function() {
+				var max = arguments[0];
+				for (var i = 1; i < arguments.length; i++) {
+					if (arguments[i] > max) {
+						max = arguments[i];
+					}
+				}
+				return max;
+			},
+			min: function() {
+				var min = arguments[0];
+				for (var i = 1; i < arguments.length; i++) {
+					if (arguments[i] < min) {
+						min = arguments[i];
+					}
+				}
+				return min;
+			}
+		}
+		console.log(myMath.PI);
+		console.log(myMath.max(12,34,6,7));
+		console.log(myMath.min(12,34,6,7));
+		
+		
+		
+		//取整  取整  取整  取整  取整  取整  
+		console.log(Math.floor(1.5));//向下取整
+		console.log(Math.ceil(1.5));//向上取整
+		console.log(Math.round(1.45));//四舍五入
+		console.log(Math.round(1.55));
+		console.log(Math.round(-1.5));//  -1
+		console.log(Math.round(-1.56));//  -2
+	</script>
+</html>
