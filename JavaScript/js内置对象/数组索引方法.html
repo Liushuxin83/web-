@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+		// indexOf（数组元素）    返回值是该数组元素的下标
+		//  若该数组元素重复，它返回第一个满足条件的索引号   从前查
+		//  若在在数组中找不到此元素  则返回-1
+		var arr = [1, 2, 2, 4, 3, 5, 5];
+		console.log(arr.indexOf(2));
+		console.log(arr.indexOf(5));
+		console.log(arr.indexOf(0));
+
+
+		//lastIndexOf(数组元素)   从后查
+		console.log(arr.lastIndexOf(2));
+		console.log(arr.lastIndexOf(5));
+		console.log(arr.lastIndexOf(0));
+
+
+
+		//数组去重
+		// 核心算法：遍历旧数组，然后拿着旧数组去查询新数组，如果该元素在新数组里面没有出现过就添加，否则不添加
+		var arr1 = [1, 1, 2, 2, 3, 3, 4, 4, 4];
+
+		function unique(arr) {
+			var newArr = [];
+			for (var i = 0; i < arr.length; i++) {
+				if (newArr.indexOf(arr[i]) === -1) { //返回-1  说明找不到该元素
+					newArr.push(arr[i]);
+				}
+			}
+			return newArr;
+		}
+		console.log(unique(arr1));
+
+
+		//数组转换为字符串
+		var arr2 = [1, 2, 3, 4, 5, 6];
+		console.log(arr2);
+		console.log(arr2.toString());
+		console.log(arr2.join('&'));
+	</script>
+</html>
