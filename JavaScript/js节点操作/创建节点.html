@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<ul>
+			<li>123</li>
+		</ul>
+		<button type="button">删除</button>
+		<ul id="uls">
+			<li>熊大</li>
+			<li>熊二</li>
+			<li>光头强</li>
+		</ul>
+		<ul class="u">
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+		</ul>
+	</body>
+	<script type="text/javascript">
+		//创建节点  documen.createElement（‘tagName’）
+		var ul = document.querySelector('ul');
+		var lis = document.createElement('li');
+		var lili = document.createElement('li');
+		ul.appendChild(lis); //添加节点  将一个节点添加到指定父节点的指定自己点的列表末尾末尾末尾
+		ul.insertBefore(lili, ul.children[0]); //将一个节点添加到父节点的指定子节点前面
+
+
+		//删除节点  node.removeChild(child)   返回删除的节点
+		var uls = document.getElementById('uls');
+		var button = document.querySelector('button');
+
+		button.onclick = function() {
+			if (uls.children.length == 0) { //uls的孩子长度为0  说明uls没有孩子了
+				this.disabled = true; //禁用按钮
+			} else {
+				uls.removeChild(uls.children[0]);
+			}
+		}
+
+
+		//复制节点
+		var u = document.querySelector('.u');
+		var lili = u.children[0].cloneNode(true); //克隆
+		u.appendChild(lili);
+	</script>
+</html>
