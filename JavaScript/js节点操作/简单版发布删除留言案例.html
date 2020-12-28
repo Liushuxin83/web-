@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+
+			li {
+				text-decoration: none;
+				background-color: #ccc;
+				font-size: 20px;
+			}
+
+			.father {
+				width: 500px;
+				margin: 0 auto;
+			}
+
+			textarea {
+				width: 400px;
+				height: 200px;
+				color: #050505;
+				resize: none;
+				font-size: 20px;
+			}
+
+			ul li {
+				margin: 10px 0;
+			}
+
+			ul li a {
+				float: right;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="father">
+			<textarea></textarea>
+			<button type="button">发布</button>
+			<ul>
+				<li>123111</li>
+			</ul>
+		</div>
+	</body>
+	<script type="text/javascript">
+		//核心思路
+		//点击按钮之后 就动态创建一个li，添加到ul里面
+		//创建li 的同时，把文本域里面的值赋给li
+		var btn = document.querySelector('button');
+		var textarea = document.querySelector('textarea');
+		var ul = document.querySelector('ul');
+		btn.onclick = function() {
+			if (textarea.value == '') {
+				alert('您没有输入内容');
+				return false; //终止操作
+			} else {
+				//1  创建节点(首先)
+				var lis = document.createElement('li');
+				//先有li才能赋值
+				lis.innerHTML = textarea.value + "<a href='javascript:;'>删除</a>";
+				//innerHTML是识别标签的
+
+
+				//2  添加节点
+				//ul.appendChild(lis);//将一个节点添加到指定父节点的子节点的末尾
+				ul.insertBefore(lis, ul.children[0]); //将一个节点添加到父节点的指定子节点前面
+
+
+
+				//3  删除元素 删除的是当前连接的<li></li>
+				var a = document.querySelectorAll('a');
+				for (var i = 0; i < a.length; i++) {
+					a[i].onclick = function() {
+						ul.removeChild(this.parentNode);
+					}
+				}
+			}
+		}
+	</script>
+</html>

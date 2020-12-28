@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="yeye">
+
+
+			<div id="father">
+				<div id="son">
+
+				</div>
+			</div>
+
+		</div>
+		<ul>
+			<li>1</li>
+			<li></li>
+			<li></li>
+			<li>4</li>
+		</ul>
+		<div id="a">
+			我是a div
+		</div>
+		<span>我是span</span>
+	</body>
+	<script type="text/javascript">
+		//利用节点层次关系获取元素（父子兄节点）
+		//一般的，节点至少拥有 nodeType（节点类型）、nodeName（节点名称）、和nodeValue（节点值）三个基本属性
+
+		//1  父级节点（得到的是离父级最近的父级节点，如果找不到父节点，返回null）
+		var divs = document.querySelectorAll('div');
+		console.log(divs[2].parentNode);
+		 //获得亲爸爸
+
+		var ul = document.querySelector('ul');
+		var lis = ul.childNodes;
+		console.log(lis);//返回包含指定节点的字节点的集合  包含元素节点、文本节点等等
+		console.log(lis[0].nodeType);
+		console.log(lis[1].nodeType);// 文本节点的nodeType 为3
+	    var liss = ul.children; //他只返回所有元素节点（开发常用）
+		console.log(liss);
+		
+		console.log(ul.firstChild);//获取第一个子节点 不管是文本还是元素
+		console.log(ul.lastChild);//获取最后一个子节点 不管是文本还是元素
+		
+		
+		console.log(ul.firstElementChild);//返回第一个子元素节点  ie9
+		console.log(ul.lastElementChild);//返回最后一个子元素节点  ie9
+		
+		
+		//解决方案
+		console.log(ul.children[0]);
+		console.log(ul.children[liss.length-1]);
+		
+		
+		//兄弟节点
+		var a=document.querySelector('#a');
+		console.log(a.nextSibling);//得到文本节点   包含元素节点、文本节点 等等 找不到返回null
+		console.log(a.previousSibling);//得到文本节点  包含元素节点、文本节点 等等 找不到返回null
+		console.log(a.nextElementSibling);//得到当前元素的下一个兄弟元素节点  ie9以上
+		console.log(a.previousElementSibling);//得到当前元素的上一个兄弟元素节点  ie9以上
+	</script>
+</html>
