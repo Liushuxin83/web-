@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			li{
+				list-style: none;
+			}
+			a {
+			    text-decoration: none;
+			    font-size: 14px;
+			}
+			.nav{
+				margin: 100px;
+			}
+			.nav>li{
+				position: relative;
+				float: left;
+				width: 80px;
+				height: 41px;
+				text-align: center;
+			}
+			.nav li a {
+			    display: block;
+			    width: 100%;
+			    height: 100%;
+			    line-height: 41px;
+			    color: #333;
+			}
+			.nav>li>a:hover {
+			    background-color: #eee;
+			}
+			.nav ul {
+			    display: none;
+			    position: absolute;
+				top: 41px;
+			    left: 0;
+			    width: 100%;
+			    border-left: 1px solid #FECC5B;
+			    border-right: 1px solid #FECC5B;
+			}
+			.nav ul li {
+				cursor: pointer;
+			    border-bottom: 1px solid #FECC5B;
+			}
+			.nav ul li:hover {
+			    background-color: #FFF5DA;
+			}
+		</style>
+	</head>
+	<body>
+		<ul class="nav">
+			<li>
+				<a href="#">微博</a>
+				<ul>
+					<li>111</li>
+					<li>111</li>
+					<li>111</li>
+				</ul>
+			</li>
+			<li>
+				<a href="#">微信</a>
+				<ul>
+					<li>222</li>
+					<li>222</li>
+					<li>222</li>
+				</ul>
+			</li>
+			<li>
+				<a href="#">热搜</a>
+				<ul>
+					<li>3333</li>
+					<li>3333</li>
+					<li>3333</li>
+				</ul>
+			</li>
+		</ul>
+	</body>
+	<script type="text/javascript">
+		var nav=document.querySelector('.nav');
+		var lis=nav.children;
+		for (var i=0;i<lis.length;i++) {
+			lis[i].onmouseover=function(){
+				this.children[1].style.display='block';
+			}
+			lis[i].onmouseout=function(){
+				this.children[1].style.display='none';
+			}
+		}
+	</script>
+</html>
