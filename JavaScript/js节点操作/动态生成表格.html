@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			table {
+				width: 500px;
+				margin: 100px auto;
+				border-collapse: collapse;
+				text-align: center;
+			}
+
+			td,
+			th {
+				border: 1px solid #333;
+			}
+
+			thead tr {
+				height: 40px;
+				background-color: #ccc;
+			}
+		</style>
+	</head>
+	<body>
+		<table cellspacing="0">
+			<thead>
+				<tr>
+					<th>姓名</th>
+					<th>科目</th>
+					<th>成绩</th>
+					<th>操作</th>
+				</tr>
+			</thead>
+			<tbody>
+			</tbody>
+		</table>
+	</body>
+	<script type="text/javascript">
+		//因为里面的学生数据都是动态的，我们需要js动态生成  这里我们需要模拟数据，自己定义好数据
+		//  数据我们采取对象形式储存
+		//1   先准备好学生的数据
+		//2  所有数据都是放到tbody里面（多少人，多少行）
+		var datas = [{
+				name: '刘舒新',
+				subject: 'JavaScript',
+				score: '100'
+			}, {
+				name: '宋祥隆',
+				subject: 'JavaScript',
+				score: '80'
+			},
+			{
+				name: '崔健',
+				subject: 'JavaScript',
+				score: '90'
+			},
+			{
+				name: '郄海淼',
+				subject: 'JavaScript',
+				score: '70'
+			}
+		];
+		//console.log(datas.length);
+		var tbody = document.querySelector('tbody');
+		for (var i = 0; i < datas.length; i++) {
+			//创建行
+			trs = document.createElement('tr');
+			tbody.appendChild(trs);
+			//创建单元格 td的数量取决于每个对象里面的属性个数
+			for(var k in datas[i]){
+				//创建单元格
+				var td=document.createElement('td');
+				//把对象里面的属性值  给td
+				//console.log(datas[i][k]);
+				td.innerHTML=datas[i][k];
+				trs.appendChild(td);
+			}
+			
+			//创建操作删除单元格
+			var td=document.createElement('td');
+			td.innerHTML='<a href="javascript:;">删除</a>'
+			trs.appendChild(td);
+		}
+		//删除操作
+		var a=document.querySelectorAll('a');
+		for(var i=0;i<a.length;i++){
+			a[i].onclick=function(){
+				tbody.removeChild(this.parentNode.parentNode);
+			}
+		}
+	</script>
+</html>
