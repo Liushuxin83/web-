@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div style="background: url(../js操作元素/images/1.jpg)">
+			123
+		</div>
+		<iframe src="" width="" height="" style="background: url(../js操作元素/images/1.jpg) no-repeat center center "></iframe>
+	</body>
+	<script type="text/javascript">
+		var div=document.querySelector('div');
+		div.onclick=function(e){
+			e=e||window.event;
+			console.log(e);
+		}
+		// div.addEventListener('click',function(e){
+		// 	console.log(e);
+		// })
+	</script>
+</html>

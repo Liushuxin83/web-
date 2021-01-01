@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			div{
+				width: 100px;
+				height: 100px;
+				margin: 10px 0;
+				background-color: red;
+			}
+		</style>
+	</head>
+	<body>
+		<div>1</div>
+		<div>2</div>
+		<div>3</div>
+	</body>
+	<script type="text/javascript">
+		//传统注册方式解绑事件
+		var divs=document.querySelectorAll('div');
+		// divs[0].onclick=function(){
+		// 	alert(111);
+		// 	divs[0].onclick = null;//这个要写在函数里面  这样会弹出一次alert
+		// }
+		
+		
+		// divs[1].addEventListener('click',fn);
+		// //这个fn不需要函数调用  就需要写个函数名就可以了
+		
+		// function fn(){
+		// 	alert(2222);
+		// 	divs[1].removeEventListener('click',fn);
+		// }
+		
+		
+		divs[2].attachEvent('onclick',fn1);
+		function fn1(){
+			alert(3333);
+			divs[2].detachEvent('onclick',fn1);
+		}
+		
+		//删除事件兼容性解决方案
+	</script>
+</html>
