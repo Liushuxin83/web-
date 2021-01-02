@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			.father{
+				width: 500px;
+				height: 500px;
+				background-color: red;
+			}
+			.son{
+				width: 200px;
+				height: 200px;
+				background-color: pink;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="father">
+			<div class="son"></div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		//阻止冒泡
+		
+		var father=document.querySelector('.father');
+		var son=document.querySelector('.son');
+		father.addEventListener('click',function(){
+			alert('father');
+		})
+		son.addEventListener('click',function(e){
+			alert('son');
+			e.stopPropagation();//为孩子添加阻止冒泡 
+			// e.cancelBubble=true;//调兼容性  ie6-8  阻止冒泡
+		})
+		
+		
+		//阻止冒泡的兼容
+		if(e&&e.Propagation){
+			e.Propagation();
+		}else{
+			window.event.cancelBubble=true;
+		}
+	</script>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="a">123</div>
+		<ul>
+			<li>1111</li>
+			<li>111</li>
+			<li>11111</li>
+		</ul>
+	</body>
+	<script type="text/javascript">
+		//  e.target   返回触发事件的对象（标准）
+		//  e.srcElement   返回触发事件的对象（非标准ie6-8使用）
+		//  e.type   返回事件的类型，比如click，mouseover   不带on 
+		//  e.cancelBubble   阻止冒泡（非标准，ie6-8使用）
+		//  e.returnValue   该属性阻止默认事件（行为）非标准ie6-8使用，比如不让连接跳转
+		//  e.preventDefault()   该方法阻止默认事件（默认行为）标准  比如不让链接跳转
+		//  e.stopPropagation()   阻止冒泡（标准）
+		var div=document.querySelector('div');
+		div.addEventListener('click',function(e){
+			console.log(e.target);//注意！！！！它返回的是触发事件的对象
+			console.log(this);//而它返回的是绑定（注册）事件的对象
+			
+			
+		})
+		var ul=document.querySelector('ul');
+		ul.addEventListener('click',function(e){
+			console.log(e.target);//触发事件是小li   指向点击的那个对象
+			console.log(this);//返回的是ul
+			console.log(e.currentTarget);//约等于  this
+		})
+		
+		// var a=document.getElementById('a');
+		// a.onclick=function(e){
+		// 	e=e||window.event;
+		// 	console.log(e.srcElement);
+		// }
+		
+		
+		
+	</script>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div>
+			123
+		</div>
+		<a href="www.baidu.com">百度</a>
+		
+		<form action="www.baidu.com">
+			
+			<input type="submit" value="提交"/>
+		</form>
+	</body>
+	<script type="text/javascript">
+		//返回事件类型
+		var div=document.querySelector('div');
+		div.addEventListener('click',fn);
+		div.addEventListener('mouseover',fn);
+		div.addEventListener('mouseout',fn);
+		function fn(e){
+			console.log(e.type)
+		}
+		
+		//阻止默认行为  让连接不跳转  或者让提交按钮不提交
+		var a=document.querySelector('a');
+		a.addEventListener('click',function(e){
+			e.preventDefault();//Dom标准写法
+		})
+		
+		a.onclick=function(e){
+			e=e||window.event;
+			e.returnValue;//ie6-8
+		}
+		
+		//我们可以利用return false阻止默认行为，没有兼容性问题，但是return后面的代码
+		//就不执行了，而且只限于传统注册事件（注意使用）
+		
+		
+		
+	</script>
+</html>
