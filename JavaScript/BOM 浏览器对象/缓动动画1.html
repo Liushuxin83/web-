@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding:0;
+			}
+			div{
+				position: absolute;
+				width: 100px;
+				height: 100px;
+				background-color:green;
+			}
+			.line{
+				position: absolute;
+				left: 400px;
+				width: 0px;
+				height: 1000px;
+				border: 1px solid #000;
+			}
+		</style>
+	</head>
+	<body>
+		<button class="btnGo" type="button">点击前进</button>
+		<button class="btnBack" type="button">点击后退</button>
+		<div></div>
+		<div class="line"></div>
+	</body>
+	<script type="text/javascript">
+		//缓动动画就是让元素运动速度有所变化，最常见的是让速度慢慢停下来
+				//思路：1.让盒子每次移动距离慢慢变小，速度就会慢慢落下来
+				//2.核心算法：（目标值-现在的位置）/10 作为每次移动的距离的步长
+				//3.停止的条件是：让当前盒子位置等于目标位置就停止定时器
+		var div = document.querySelector('div');
+		var btnGo = document.querySelector('.btnGo');
+		var btnBack = document.querySelector('.btnBack');
+		//只要加了var声明就会到内存中开辟一个空间，多个动画的话会开辟好多内存空间
+		//性能优化：动画函数给不同的元素记录不同的定时器（自己专门用自己的定时器）
+		//核心原理：利用js是一门动态语言，可以很方便给当前对象添加属性
+		//obj  目标对象
+		//target  目标位置
+		function animate_left_right(obj, target, callback){
+			//callback = function(){};
+			//关闭上一个定时器 只保留当前的定时器  重要！！！！！
+			clearInterval(obj.timer);//这是解决多次点击加速问题！！！！！！！
+			obj.timer = setInterval(function(){
+				//步长值写到定时器里面
+				//把步长值改为整数，不要出现小数！！！！！
+				var step = (target - obj.offsetLeft)/10;
+				step = step>0?Math.ceil(step):Math.floor(step);
+				
+				if(obj.offsetLeft==target){
+					clearInterval(obj.timer);
+					//回调函数写到定时器结束里面!!!!!
+					// if(callback){
+					// 	callback();
+					// }
+					callback && callback();
+				}
+				//改变步长 （目标值-现在的位置）/10 作为每次移动的距离的步长
+				obj.style.left = obj.offsetLeft + step + 'px';
+			},30)
+		}
+		btnGo.addEventListener('click',function(){
+			//此时连续点击，速度会加快，注意！！！！因为开启了太多的定时器
+		    //解决方案就是，让我们的元素只有一个定时器执行
+			animate_left_right(div,400,function(){
+				div.style.backgroundColor='red';
+			});
+		})
+		btnBack.addEventListener('click',function(){
+			animate_left_right(div,0);
+		})
+	</script>
+</html>

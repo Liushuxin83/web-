@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			div {
+				position: absolute;
+				left: 0px;
+				width: 100px;
+				height: 100px;
+				background-color: green;
+			}
+			.line{
+				position: absolute;
+				left: 400px;
+				width: 0px;
+				height: 800px;
+				border-left: 2px solid #000;
+			}
+		</style>
+	</head>
+	<body>
+		<div></div>
+		<div class="line"></div>
+	</body>
+
+	<script type="text/javascript">
+		//动画原理
+		//通过定时器setInterval（）不断移动盒子的位置
+		//1.获得盒子当前位置
+		//2.让盒子当前位置加一个移动距离
+		//3.利用定时器不断的重复这个操作
+		//4.加一个结束定时器的条件
+		//5.注意！！！此元素需要添加定位，才能使用element.style.left
+
+		var div = document.querySelector('div');
+		var timer = setInterval(function(){
+			div.style.left = div.offsetLeft + 3 + 'px';
+			if(div.offsetLeft>=400){
+				div.style.left='400px';
+			}
+			if(div.offsetLeft==400){
+				clearInterval(timer);
+			}
+			
+		},30)
+	</script>
+</html>

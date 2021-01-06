@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			#ad{
+				width: 200px;
+				height: 200px;
+				background-color: red;
+				font-size: 100px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="ad">
+			5
+		</div>
+	</body>
+	<script type="text/javascript">
+		//setTimeout()  属于window对象
+		//setInterval()
+		
+		
+		// setTimeout(callback,3000)
+		// function callback(){
+		// 	alert(1111);
+		// }
+		
+		
+		
+		//五秒后自动关闭广告
+		var ad=document.querySelector('#ad');
+		var time=5;
+		fn();
+		setInterval(fn,1000)
+		function fn(){
+			ad.innerHTML=time;
+			time--;
+		}
+		setTimeout(function(){
+			ad.style.display='none';
+		},5000)
+	</script>
+</html>

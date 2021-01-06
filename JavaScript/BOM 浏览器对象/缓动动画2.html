@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+
+			.box {
+				position: absolute;
+				width: 100px;
+				height: 100px;
+				background-color: red;
+			}
+			.line{
+				position: absolute;
+				top: 400px;
+				width: 1000px;
+				height: 0px;
+				border: 1px solid #000;
+			}
+		</style>
+	</head>
+	<body>
+		<button class="btnGo" type="button">点击前进</button>
+		<button class="btnBack" type="button">点击后退</button>
+		<br><br>
+		<div class="box"></div>
+		<div class="line"></div>
+	</body>
+	<script type="text/javascript">
+		window.onload = function() {
+		var btnGo = document.querySelector('.btnGo');
+		var btnBack = document.querySelector('.btnBack');
+		var box = document.querySelector('.box');
+		//console.log(box.offsetTop);
+		btnGo.addEventListener('click', function() {
+			animate_top_bottom(box,400,function(){
+				box.style.backgroundColor='green';
+			})
+		})
+		btnBack.addEventListener('click', function() {
+			animate_top_bottom(box,44)
+		})
+		
+		function animate_top_bottom(obj, target, callback){
+			obj.timer = setInterval(function() {
+				var step = (target - obj.offsetTop)/10;//步长
+				step = step>0?Math.ceil(step):Math.floor(step);
+			    obj.style.top = obj.offsetTop+step+'px';
+				if(obj.offsetTop==target){
+					clearInterval(obj.timer);
+					callback&&callback();
+				}
+			}, 30)
+		}
+		}
+	</script>
+</html>
