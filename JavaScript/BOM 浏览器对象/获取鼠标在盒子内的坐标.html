@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+
+			.box {
+				width: 200px;
+				height: 200px;
+				background-color: red;
+				margin: 0 100px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box"></div>
+	</body>
+	<script type="text/javascript">
+		var box = document.querySelector('.box');
+		box.addEventListener('mousemove', function(e) {
+			var X = e.pageX;
+			var Y = e.pageY;
+			// console.log(x);
+			// console.log(y);
+			var x = e.pageX - box.offsetLeft;
+			var y = e.pageY - box.offsetTop;
+			box.innerHTML = 'x坐标为' + x + ' y坐标为' + y;
+		})
+	</script>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<input type="" name="" id="" value="" />
+		<button type="button">发送</button>
+	</body>
+	<script type="text/javascript">
+		var btn = document.querySelector('button');
+		var time = 5;
+		//如果变量time到了0，需要停止定时器，并且复原按钮初始状态
+		btn.addEventListener('click', function() {
+			this.disabled = true;
+			//button里面的文字要修改需要使用innerHTML，不可以用value
+
+			var timer = setInterval(function() {
+				if (time == -1) {
+					//当time==0时，需要关闭定时器，并且复原按钮初始状态
+					clearInterval(timer);
+					btn.disabled = false;
+					btn.innerHTML = '发送';
+					time = 5;//复原之后 time也要复原
+				} else {
+					btn.innerHTML = '还剩下' + time + '秒';
+					time--;
+				}
+			}, 1000)
+		})
+	</script>
+</html>
