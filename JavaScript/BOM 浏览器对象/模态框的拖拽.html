@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+
+			a {
+				text-decoration: none;
+				color: #000;
+			}
+
+			.login-header {
+				width: 100%;
+				text-align: center;
+				height: 30px;
+				font-size: 24px;
+				line-height: 30px;
+			}
+
+			.login {
+				display: none;
+				width: 512px;
+				height: 280px;
+				position: fixed;
+				border: 1px solid #ebebeb;
+				left: 50%;
+				top: 50%;
+				background-color: #fff;
+				box-shadow: 0px 0px 20px #ddd;
+				z-index: 999;
+				transform: translate(-50%, -50%);
+			}
+
+			.login-title {
+				position: relative;
+				width: 100%;
+				margin: 10px 0 0 0;
+				text-align: center;
+				line-height: 40px;
+				font-size: 18px;
+				cursor: move;
+				background-color: red;
+			}
+
+			.login-input-content {
+				margin-top: 20px;
+				background-color: pink;
+			}
+
+			.login-input {
+				overflow: hidden;
+				margin: 0 0 20px 0;
+			}
+
+			.login-input .list-input {
+				float: left;
+				line-height: 35px;
+				height: 35px;
+				width: 350px;
+				border: #ebebeb 1px solid;
+				text-indent: 10px;
+				outline: none;
+			}
+
+			.login-input label {
+				float: left;
+				width: 90px;
+				height: 35px;
+				padding-right: 10px;
+				text-align: right;
+				line-height: 35px;
+				font-size: 14px;
+			}
+
+			.login-button {
+				width: 50%;
+				margin: 30px auto 0px auto;
+				line-height: 40px;
+				font-size: 14px;
+				border: #ebebeb 1px solid;
+				text-align: center;
+			}
+
+			.login-bg {
+				display: none;
+				width: 100%;
+				height: 100%;
+				position: fixed;
+				top: 0px;
+				left: 0px;
+				background: rgba(0, 0, 0, .3);
+			}
+
+			.login-title span {
+				position: absolute;
+				font-size: 12px;
+				right: -20px;
+				top: -30px;
+				background-color: #fff;
+				border: 1px solid #ebebeb;
+				width: 40px;
+				height: 40px;
+				border-radius: 50%;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="login-header"><a id="link" href="javascript:;">点击，弹出登录框</a></div>
+		<div id="login" class="login">
+			<div id="title" class="login-title">
+				登录会员
+				<span><a id="closeBtn" href="javascript:void(0);" class="close-login">关闭</a></span>
+			</div>
+			<div class="login-input-content">
+				<div class="login-input">
+					<label>用户名：</label>
+					<input type="text" name="info[username]" id="username" placeholder="请输入用户名" class="list-input" />
+				</div>
+				<div class="login-input">
+					<label>登录密码：</label>
+					<input type="password" name="info[password]" id="password" class="list-input" placeholder="请输入密码" />
+				</div>
+			</div>
+			<div id="loginBtn" class="login-button">
+				<a href="javascript:;" id="login-button-submit">登录会员</a>
+			</div>
+		</div>
+		<div id="bg" class="login-bg"></div>
+	</body>
+
+
+
+
+	<script type="text/javascript">
+		//触发事件是鼠标按下mousedown，鼠标移动mousemove，鼠标松开mouseup
+		//拖拽过程：鼠标移动过程中，获得最新的值赋值给模态框的left和top
+		//鼠标的坐标减去鼠标在盒子内的坐标才是模态框真正的位置
+		//鼠标按下获取鼠标在盒子内的坐标
+		//鼠标移动：就把模态框的坐标设置为鼠标坐标减去鼠标在盒子内的坐标即可，
+		//注意移动时间要写在按下事件里面
+		//鼠标松开：就停住拖拽，就是让鼠标移动事件接触
+		var login = document.querySelector('.login');
+		var mask = document.querySelector('.login-bg');
+		var link = document.querySelector('#link');
+		link.addEventListener('click', function() {
+			login.style.display = 'block';
+			mask.style.display = 'block';
+		})
+		var title = document.querySelector('#title');
+		title.addEventListener('mousedown', function(e) {
+			var x = e.pageX - login.offsetLeft;//鼠标在盒子内的坐标
+			var y = e.pageY - login.offsetTop;//鼠标在盒子内的坐标
+			document.addEventListener('mousemove',move)
+			function move(e){
+				login.style.left = e.pageX-x + 'px';
+				login.style.top = e.pageY-y + 'px';
+			}
+			document.addEventListener('mouseup',function(){
+				document.removeEventListener('mousemove',move)
+			})
+		})
+	</script>
+</html>
