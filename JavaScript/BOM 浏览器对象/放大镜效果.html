@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+
+			body {
+				background-color: #ccc;
+			}
+
+			.left {
+				position: relative;
+				width: 300px;
+				height: 300px;
+				margin: 10px 0 0 100px;
+			}
+
+			.left img {
+				width: 100%;
+				height: 100%;
+			}
+
+			.mask {
+				display: none;
+				position: absolute;
+				top: 0px;
+				left: 0px;
+				width: 150px;
+				height: 150px;
+				background-color: #fede4f;
+				opacity: .5;
+				border: 1px solid #ccc;
+				cursor: move;
+			}
+
+			.right {
+				overflow: hidden;
+				display: none;
+				position: absolute;
+				top: 0px;
+				left: 310px; 
+				width: 500px;
+				height: 500px;
+				background-color: red;
+			}
+			.right .bigimg{
+				position: absolute;
+				top: 0px;
+				left: 0px;
+				width: 800px;
+				height: 800px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="left">
+			<img src="img/b3.png">
+			<div class="mask"></div>
+			<div class="right"><img src="img/big.jpg" class="bigimg"></div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		//黄色的遮挡层会跟随鼠标移动
+		//把鼠标在大盒子内的坐标给黄色盒子遮挡层
+
+
+
+		//移动黄色遮挡层，大图片跟随移动
+		var left = document.querySelector('.left');
+		var mask = document.querySelector('.mask');
+		var right = document.querySelector('.right');
+		var bigimg = document.querySelector('.bigimg');
+		// 当鼠标指针在指定的元素中移动时，就会发生 mousemove 事件。
+		//用户把鼠标移动一个像素，就会发生一次 mousemove 事件
+		//当鼠标指针位于元素上方时，会发生 mouseover 事件。
+		left.addEventListener('mouseover', function() {
+			mask.style.display = 'block';
+			right.style.display = 'block';
+		})
+		left.addEventListener('mouseout', function() {
+			mask.style.display = 'none';
+			right.style.display = 'none';
+		})
+		left.addEventListener('mousemove', function(e) {
+			var x = e.pageX - left.offsetLeft;
+			var y = e.pageY - left.offsetTop;
+			var a = -(mask.offsetWidth/2);
+			var b = -(mask.offsetHeight/2);
+			var maskX = x + a;
+			var maskY = y + b;
+			if(maskX<=0){
+				maskX=0;
+			}else if(maskX>=left.offsetWidth-mask.offsetWidth){
+				maskX=left.offsetWidth-mask.offsetWidth;
+			}
+			if(maskY<=0){
+				maskY=0;
+			}else if(maskY>=left.offsetHeight-mask.offsetHeight){
+				maskY=left.offsetHeight-mask.offsetHeight;
+			}
+			mask.style.left = maskX + 'px';
+			mask.style.top = maskY + 'px';
+			
+			//遮挡层移动距离/遮挡层最大移动距离=大图片移动距离/大图片最大移动距离
+			//遮挡层移动距离
+			var maskMax=left.offsetWidth-mask.offsetWidth;
+			var bigMax=bigimg.offsetWidth-right.offsetWidth;
+			var bigX = (maskX/maskMax)*bigMax;
+			var bigY = (maskY/maskMax)*bigMax;
+			//不给大图片定位的话，left和top值不起效果
+			bigimg.style.left=-bigX+'px';//注意！！！此时这个大图片需要定位
+			bigimg.style.top=-bigY+'px';//注意！！！此时这个大图片需要定位
+		})
+	</script>
+</html>
