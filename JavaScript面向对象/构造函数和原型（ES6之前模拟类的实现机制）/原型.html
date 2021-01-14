@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+		//原型， 构造函数很好用，但是存在浪费内存问题
+		//所以构造函数通过原型分配的函数是所有对象共享的
+		//在js中，每一个构造函数都有一个prototype属性，指向另一个对象,这就是构造函数的原型对象
+		//！！！！注意这个prototype就是一个对象，这个对象的所有方法都会别构造函数所拥有
+		//可以把那些不变的方法，直接定义在prototype对象上，这样所有的实例就可以共享这些方法
+		//原型是什么：构造函数的一个对象，原型的作用：共享方法,不需要开辟新的内存空间
+		//一般情况下，公共属性放到构造函数里面，公共的方法放到构造函数的原型对象里
+		
+		
+		function Star(uname,age){
+			this.uname = uname;
+			this.age = age;
+			// this.sing = function(){
+			// 	console.log('我会唱歌');
+			// }
+		}
+		Star.prototype.sing = function(){
+			console.log('我会唱歌');
+		}
+		var ldh = new Star('刘德华',100);
+		var zxy = new Star('张学友',200);
+		//console.log(ldh.sing === zxy.sing);//返回false是因为比较的是地址，相同的函数但是地址不同
+		
+		console.log(ldh.sing === zxy.sing);//返回true
+		console.dir(Star);
+		
+	</script>
+</html>

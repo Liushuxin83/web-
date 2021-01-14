@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+		//对象原型__proto__（这是个属性）起到指向作用,指向构造函数中的prototype对象!!!!!!
+		//对象都会有一个属性__proto__指向构造函数的prototype原型对象，之所以对象可以使用
+		//构造函数prototype原型对象的属性和方法，就是因为对象有__proto__原型的存在
+		
+		function Star(uname,age,a){
+			this.uname = uname;
+			this.age = age;
+		}
+		Star.prototype.sing = function(){
+			console.log('我会唱歌');
+		}
+		var ldh = new Star('刘德华',100);
+		var zxy = new Star('张学友',200);
+		console.log(ldh);
+		console.log(ldh.__proto__ === Star.prototype);//返回true
+		console.log(Star.prototype.__proto__ === Object.prototype);//返回true
+		console.log(Object.prototype.__proto__);//返回null
+	</script>
+</html>
