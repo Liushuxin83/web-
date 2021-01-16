@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+		//ES6之前并没有提供extends继承，我们可以通过构造函数+原型对象模拟实现继承，称为组合继承
+		
+		function Father(uname,age){
+			//this指向父构造函数的对象实例
+			this.uname = uname;
+			this.age = age;
+		}
+		Father.prototype.money = function(){
+			console.log(100000);
+		}
+		function Son(uname,age,score){
+			//this指向子构造函数的对象实例
+			Father.call(this,uname,age);//调用父构造函数，并且把父构造函数的this指向子构造函数的this
+			this.score = score;
+		}
+		
+		//Son.prototype = Father.prototype;//这样直接赋值会有问题，如果修改了子原型对象，父原型对象也会跟着一起变化
+		//Son.prototype = new Father();
+		var f = new Father();
+		Son.prototype = f;
+		console.log(Son.prototype);
+		//如果利用对象的形式修改了原型对象，别忘了用constructor指回原来的构造函数
+		Son.prototype.constructor = Son;
+		Son.prototype.exam = function(){
+			console.log('孩子要考试');
+		}
+		var son = new Son('刘舒新',20,100);
+		console.log(son);
+		console.log(Father.prototype);
+		console.log(Son.prototype.constructor); 
+	</script>
+</html>
