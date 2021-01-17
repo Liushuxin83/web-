@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+		function Father(uname,age){
+			this.uname = uname;
+			this.age = age;
+		}
+		
+		Father.prototype.sing = function(){
+			console.log('这是Father的prototype里面的sing方法')
+		}
+		
+		Object.prototype.a = function(){
+			console.log('这是Object的prototype里面的a方法');
+		}
+		
+		// function Son(){
+			
+		// }
+		var f = new Father();
+		console.log(f.__proto__ === Father.prototype);//它会指向Father的prototype
+		console.log(Father.prototype);//这里面既有Father的构造函数也有普通函数的方法
+		console.log(Father.prototype.constructor);//这个会指向Father这个构造函数
+		// console.log(f.__proto__ === Father.prototype);
+		// //console.log(Father.prototype == );
+		// console.log(Father.prototype.__proto__ === Object.prototype);
+		// console.log(Object.prototype.__proto__);
+		
+		console.log(f.__proto__.__proto__ === Object.prototype);
+		console.log(Object.prototype);//这里面既有Object的构造函数也有普通函数的方法
+		console.log(Object.prototype.constructor);
+	</script>
+</html>
