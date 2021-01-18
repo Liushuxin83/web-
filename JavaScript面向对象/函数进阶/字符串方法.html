@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<input type="text"/><button type="button">点击</button>
+		<div>
+			
+		</div>
+	</body>
+	<script type="text/javascript">
+		//trim（）方法会从一个字符串的两端删除空白字符
+		//此方法并不影响原来的字符串，它返回一个新的字符串
+		//解决验证表单
+		var str = '   andy  ';
+		console.log(str);
+		var res = str.trim();
+		console.log(res);
+		var input = document.querySelector('input');
+		var btn = document.querySelector('button');
+		var div = document.querySelector('div');
+		btn.addEventListener('click',function(){
+			if(input.value.trim() === ''){
+				alert('请输入内容');
+			}else{
+				console.log(input.value.trim());
+				console.log(input.value.trim().length);
+				div.innerHTML = input.value.trim();
+			}
+		})
+	</script>
+</html>

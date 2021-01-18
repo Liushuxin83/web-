@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<button type="button">按钮按钮按钮按钮</button>
+		<button type="button">按钮按钮按钮按钮</button>
+		<button type="button">按钮按钮按钮按钮</button>
+		<button type="button">按钮按钮按钮按钮</button>
+		<button type="button">按钮按钮按钮按钮</button>
+	</body>
+	<script type="text/javascript">
+		//bind()方法不会调用函数，但是可以改变函数内部this指向
+		//其返回由指定的this值和初始化参数改造的原函数拷贝,返回一个函数
+		//如果有的函数不需要立即调用，但是又想改变这个函数内部的this指向，此时用bind（）方法
+		var o = {
+			name:'andy'
+		}
+		function fn(a,b){
+			console.log(this);
+			console.log(a+b);
+		}
+		var f = fn.bind(o,1,2);
+		f();
+		
+		
+		//例如：有一个按钮，点击之后就禁用这个按钮，三秒之后就开启这个按钮
+		// var btn = document.querySelector('button');
+		// btn.addEventListener('click',function(){
+		// 	this.disabled = true;
+		// 	setTimeout(function(){
+		// 		//btn.disabled = false;
+		// 		this.disabled = false;
+		// 	}.bind(this),3000)
+		// })
+		
+		
+		var btns = document.querySelectorAll('button');
+		for(var i=0;i<btns.length;i++){
+			btns[i].addEventListener('click',function(){
+				this.disabled = true;
+				setTimeout(function(){
+					this.disabled = false;
+				}.bind(this),2000)
+			})
+		}
+	</script>
+</html>

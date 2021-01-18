@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+		//apply（）的主要应用，比如我们可以利用apply借助数学内置对象求最大值
+		var arr = [1,66,3,99,4];
+		var max = Math.max.apply(Math,arr);
+		var min = Math.min.apply(Math,arr);
+		console.log(max,min);
+		
+		
+		// var o = {
+		// 	name:'andy'
+		// }
+		// function fn(arr1){
+		// 	console.log(this);
+		// 	console.log(arr1);
+		// }
+		// fn.apply(o,[1]);
+	</script>
+</html>
