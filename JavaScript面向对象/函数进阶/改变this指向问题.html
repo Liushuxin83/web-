@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+		//改变函数内this指向   js提供了三种方法，call()，apply()，bind()
+		//1.call（）主要实现继承
+		var o = {
+			name:'andy'
+        }
+		function fn(a,b){
+			console.log(this);
+			console.log(a+b);
+		}
+		fn.call(o,1,2);                                                                                                                                                                                                                                               
+		function Father(uname,age){
+			this.uname = uname;
+			this.age = age;
+		}
+		function Son(uname,age){
+			Father.call(this,uname,age);
+		}
+		var son = new Son('刘舒新',21);
+		console.log(son);
+	</script>
+</html>

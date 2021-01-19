@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+		//高阶函数是对其他函数进行操作的函数，它接收函数作为参数或将参数作为返回值输出
+		function fn(callback){
+			callback&&callback();
+		}
+		fn(function(){
+			console.log(111);
+		});
+		
+		
+		function f(){
+			return function(){
+				console.log(222);
+			};
+		}
+		var a = f();
+		a();
+	</script>
+</html>
