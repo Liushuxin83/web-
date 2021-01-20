@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			.query{
+				width: 500px;
+				background-color: pink;
+				margin:  0 auto;
+			}
+			.query input{
+				width: 50px;
+				outline: none;
+			}
+			.query .info{
+				width: 100%;
+				margin: 30px auto;
+				
+				border: 2px solid #000;
+				border-collapse: collapse;
+				text-align: center;
+			}
+			.query .info th,
+			td{
+				border: 2px solid #000;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="query">
+			<span>按价格查询商品:</span><input type="text" class="start" /><span>-</span><input type="text" class="end" /><button type="button" class="search-price">搜索</button><span>按商品名称查询：</span><input type="text" / class="procuct">
+			<button type="button" class="search-product">查询</button>
+			<table class="info">
+				<thead>
+				<tr>
+					<th>id</th>
+					<th>产品名称</th>
+					<th>价格</th>
+				</tr>
+				</thead>
+				<tbody>
+				</tbody>
+			</table>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var date = [{
+			id:1,
+			pname:'小米',
+			price:3999
+		},{
+			id:2,
+			pname:'oppo',
+			price:2999
+		},{
+			id:3,
+			pname:'荣耀',
+			price:999
+		},{
+			id:4,
+			pname:'华为',
+			price:100
+		},{
+			id:5,
+			pname:'小米',
+			price:10
+		},{
+			id:6,
+			pname:'oppo',
+			price:20
+		},{
+			id:7,
+			pname:'荣耀',
+			price:30
+		},{
+			id:8,
+			pname:'华为',
+			price:40
+		},{
+			id:9,
+			pname:'小米',
+			price:50
+		},{
+			id:10,
+			pname:'oppo',
+			price:60
+		},{
+			id:11,
+			pname:'荣耀',
+			price:70
+		},{
+			id:12,
+			pname:'华为',
+			price:80
+		}];
+		
+		var tbody = document.querySelector('tbody');
+		var start = document.querySelector('.start');
+		var end = document.querySelector('.end');
+		var search_price = document.querySelector('.search-price');
+		var product = document.querySelector('.procuct');
+		var search_product = document.querySelector('.search-product');
+		setDate(date);
+		function setDate(mydate){
+			//先清空原来tbody里面的数据
+			tbody.innerHTML = '';
+			//把数据渲染到页面中
+			mydate.forEach(function(val){
+				//console.log(val);//输入数组里面的每一个对象
+				//创建行
+				tr = document.createElement('tr');
+				tr.innerHTML = '<td>'+val.id+'</td><td>'+val.pname+'</td><td>'+val.price+'</td>';
+				tbody.appendChild(tr);
+			})
+		}
+		search_price.addEventListener('click',function(){
+			var newDate = date.filter(function(val){
+				//filter会返回一个新数组,筛选元素
+				return val.price >= start.value && val.price <= end.value;
+			})
+			//console.log(newDate);
+			//把筛选完之后的对象渲染到页面中
+			setDate(newDate);
+		})
+		search_product.addEventListener('click',function(){
+			//如果查询数组中唯一的元素，用some方法更合适，因为some找到这个元素，就不在循环效率更高
+			var newArr = [];
+			date.some(function(val){
+				// console.log(typeof val.pname);
+				// console.log(typeof product.value);
+				if(val.pname === product.value){
+					//some会返回一个对象
+					newArr.push(val);
+					console.log(val);
+					return false;//return后面必须写true，说明找到了这个元素
+				}
+			})
+			//把拿到的数据渲染到页面
+			setDate(newArr);
+		})
+	</script>
+</html>
