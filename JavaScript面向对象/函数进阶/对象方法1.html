@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+		//Object.keys(obj)；用于获取对象自身的所有属性
+		//效果类似于 for in
+		//返回一个由属性名组成的数组,这样就可以使用数组的方法了
+		var o = {
+			id:1,
+			pname:'小米',
+			price:1000,
+			num:20
+		};
+		console.log(Object.keys(o));
+		console.log(Object.keys(o) instanceof Array);
+		Object.keys(o).forEach(function(val){
+			//对于一般的常量就是用点.，对于其他的使用【】运算符
+			//[]里面可以是变量、数字、关键字作为属性名，而点. 方法不可以
+			console.log(o.val);//undefined,
+			console.log(o[val]);
+		})
+	</script>
+</html>

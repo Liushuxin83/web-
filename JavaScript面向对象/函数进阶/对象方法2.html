@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+		//Object.defineProperty()；定义新属性或修改原有属性
+		//Object.defineProperty(obj目标对象,prop需要定义或修改的属性的名字,descriptor目标属性所拥有的的特性);
+		//第三个参数是以对象格式书写，value：设置属性的值，默认为undefined
+		//writable：值是否可以重写，true/false ，默认为false
+		//enumerable：目标属性是否可以被枚举(是否可被遍历出来)，true/false，默认为false
+		//configurable：目标属性是否可以被删除或是否可以再次修改特性，true/false，默认为false
+		//这三个参数都是必须的，不可省略
+		var obj = {
+			id:1,
+			pname:'小米',
+			price:100
+		}
+		// obj.num = 100;
+		// console.log(obj);
+		
+		Object.defineProperty(obj,'num',{
+			value:1000,
+			enumerable:true,
+		})
+		console.log(obj);
+		
+		Object.defineProperty(obj,'price',{
+			value:1,
+		})
+		console.log(obj);
+		
+		Object.defineProperty(obj,'id',{
+			writable:false,//不可修改id
+		})
+		obj.id = 2;
+		console.log(obj);
+		
+		Object.defineProperty(obj,'address',{
+			value:'河北省保定市易县西山北乡',
+			//enumerable 默认为false
+			enumerable:false,
+			configurable:false,
+		})
+		console.log(Object.keys(obj));
+		delete obj.address;
+		delete obj.pname;
+		delete obj.num;
+		console.log(obj);
+		//因为configurable:false，所以不允许在修改第三个参数里面的特性
+		Object.defineProperty(obj,'address',{
+			value:'河北省保定市易县西山北乡',
+			//enumerable 默认为false
+			enumerable:true,
+			configurable:false,
+		})
+	</script>
+</html>
