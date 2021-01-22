@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+		//ES6中创建类
+		//!!!!类必须使用new实例化对象
+		class Star {
+			//构造函数
+			constructor(uname, age) {
+				this.uname = uname;
+				this.age = age;
+			}
+			//类里面所有的函数不需要写function,多个函数方法之间不需要逗号分隔
+			sing(song) {
+				console.log(song);
+			}
+		}
+
+		var ldh = new Star('刘德华', 20);
+		var lsx = new Star('刘舒新', 18)
+		console.log(ldh);
+		console.log(lsx);
+		ldh.sing('ldhldh');
+		lsx.sing('lsxlsx');
+	</script>
+</html>
