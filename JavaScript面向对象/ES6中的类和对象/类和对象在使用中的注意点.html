@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<button type="button">按钮</button>
+	</body>
+	<script type="text/javascript">
+		//在ES6中类没有变量提升，所以必须先定义类，才能通过类实例化对象！！！！！！
+		//类里面的共有的属性和方法一定要加this
+		
+		var that;
+		class Star{
+			constructor(uname,age) {
+				//constructor 里面的this指向的是创建的实例对象
+				that = this;
+				//console.log(this);
+			    this.uname = uname;
+				this.age = age;
+				//this.sing();
+				this.btn = document.querySelector('button');
+				//this.btn.addEventListener('click',this.sing)
+				this.btn.onclick = this.sing;
+			}
+			sing(){
+				//这个方法里面的this指向的是btn按钮，因为这个按钮调用了这个函数
+				console.log(this);
+				console.log(that.uname);//that存的是constructor里面的this
+			}
+		}
+		var ldh = new Star('刘德华');//只要new一下  就会调用类里面的构造函数
+		console.log(that === ldh);//返回true
+	</script>
+</html>

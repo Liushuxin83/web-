@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+		// class Father{
+		// 	constructor(x,y) {
+		// 	    this.x = x;
+		// 		this.y = y;
+		// 	}
+		// 	sum(){
+		// 		console.log(this.x+this.y);
+		// 	}
+		// }
+		// //子类继承父类的方法，同时扩展其他方法
+		// class Son extends Father{
+		// 	constructor(x,y) {
+		// 		super(x,y);//利用super 调用父类的构造函数
+		// 		//super 必须在子类this之前调用
+		// 	    this.x = x;
+		// 		this.y = y;
+		// 	}
+		// 	sub(){
+		// 		console.log(this.x-this.y);
+		// 	}
+		// }
+		// var son = new Son(5,3);
+		// son.sub();
+		// son.sum();
+
+
+
+
+		class Father {
+			constructor(x, y) {}
+			sum() {
+				console.log(this.x + this.y);
+			}
+		}
+		//子类继承父类的方法，同时扩展其他方法
+		class Son extends Father {
+			constructor(x, y) {
+				//在构造函数中使用时， super必须在this之前使用， 这点要牢记。
+
+				//这是因为： ES6的继承， 需要先创建父类的this， 
+				//子类调用super继承父类的this对象， 然后再加工。
+
+				//换句话说， 子类没有自己的this对象， 而是继承父亲的this对象， 然后进行加工。                    如果不调用super， 子类就得不到this对象。
+				super();
+				this.x = x;
+				this.y = y;
+			}
+			sub() {
+				console.log(this.x - this.y);
+			}
+		}
+		var son = new Son(5, 3);
+		son.sub();
+		son.sum();
+	</script>
+</html>
