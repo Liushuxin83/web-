@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="f.css">
+    <script src="f.js"></script>
+    <style>
+        .container {
+            width: 300px;
+            height: 200px;
+            border: 2px solid #000;
+            margin: 0 auto;
+        }
+        
+        .item {
+            float: left;
+            width: 70px;
+            height: 30px;
+            border: 1px solid green;
+            margin: 0 20px 0 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>点击切换颜色</h2>
+        <div class="item"></div>
+        <div class="item"></div>
+        <div class="item"></div>
+        <div class="e"></div>
+    </div>
+</body>
+<script>
+    let items = document.querySelectorAll('.item');
+    //遍历并绑定事件
+    for (let i = 0; i < items.length; i++) {
+
+        items[i].addEventListener('click', function() {
+            console.log(i);
+            items[i].style.back
+        })
+
+    }
+</script>
+
+</html>

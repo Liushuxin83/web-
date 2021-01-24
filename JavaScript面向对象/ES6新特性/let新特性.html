@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //声明变量
+        let a;
+        let d, b, c;
+        let e = 100;
+        let f = 511,
+            g = 'iloveyou',
+            h = [];
+        //1.变量不能重复声明，防止变量污染
+        // let star = '罗志祥';
+        // let star = '小猪';
+        //2.块级作用域 if else while for   全局作用域、函数作用域、eval作用域（js严格模式）
+        // {
+        //     var girl = 'me';
+        // }
+        // console.log(girl);
+        //3.不存在变量提升
+        // console.log(song); //undefined
+        // var song = '恋爱达人';
+        // console.log(sing);//报错
+        // let sing = '恋爱达人';
+        //4.不影响作用域链
+        {
+            let school = '尚硅谷';
+            if (true) {
+                let num = 10;
+                console.log(school); //不报错，不影响作用域链效果
+                for (var i = 0; i < 2; i++) {
+                    console.log(num); //不报错，
+                }
+            }
+            console.log(num); //报错
+        }
+    </script>
+</body>
+
+</html>
