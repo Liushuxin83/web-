@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    // ES6引入rest参数，用于获取函数的实参，用来取代arguments
+    function date() {
+        console.log(arguments);
+        console.log(typeof arguments);
+        console.log(arguments instanceof Array);
+    }
+    date(1, 2, 3);
+
+    //rest参数
+    function dates(...args) {
+        console.log(args);
+        console.log(typeof args);
+        console.log(args instanceof Array);
+    }
+    dates('阿娇', '白芷', '思慧');
+
+    //rest参数必须要放到参数最后!!!!!
+</script>
+
+</html>
