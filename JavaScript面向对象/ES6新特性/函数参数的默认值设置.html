@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    //ES6中允许给参数(形参)赋初始值,这个初始值一般放最后
+    function add(a, b, c = 10) {
+        return a + b + c;
+    }
+    console.log(add(1, 2, 3));
+
+    //与解构赋值结合
+    function connect({
+        host,
+        username,
+        password,
+        port
+    }) {
+        console.log(host);
+        console.log(username);
+        console.log(password);
+        console.log(port);
+
+    }
+    connect({
+        host: 'localhost',
+        username: 'root',
+        password: 'root',
+        port: 3306,
+    });
+</script>
+
+</html>
