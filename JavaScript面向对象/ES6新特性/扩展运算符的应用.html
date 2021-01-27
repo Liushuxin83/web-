@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div></div>
+    <div></div>
+    <div></div>
+</body>
+<script>
+    //  1.数组的合并
+    const a = ['王台历', '小样', '误杀'];
+    const b = ['增益', '零花'];
+    // const c = a.concat(b);
+    // console.log(c);
+    const d = [...a, ...b];
+    console.log(d);
+
+
+    // 2.数组的克隆
+    const sanzhihua = ['E', 'G', 'M'];
+    const s = [...sanzhihua];
+    console.log(s);
+
+    //3.将伪数组转换为真正数组
+    const divs = document.querySelectorAll('div');
+    console.log(divs);
+    const divsArr = [...divs];
+    console.log(divsArr);
+</script>
+
+</html>
