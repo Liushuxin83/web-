@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        //异步编程参数传递
+        function* gen(arg) {
+                console.log(arg);
+                let one = yield 111;
+                console.log(one);
+                let two = yield 222;
+                console.log(two);
+                yield 333;
+                console.log('DDD');
+            }
+            //执行获取迭代器对象
+        let iterator = gen('AAA');
+        //!!!next方法是可以传入实参的
+        console.log(iterator.next());
+        console.log(iterator.next('BBB'));
+        console.log(iterator.next('CCC'));
+        console.log(iterator.next('DDD'));
+    </script>
+</body>
+
+</html>
