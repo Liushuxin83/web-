@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        // 迭代器是一种接口（对象里边的一个属性），为各种不同的数据结构提供统一的访问机制，任何数据结构只要部署
+        // iterator接口，就可以完成遍历操作，iterator接口主要共for of使用
+        //原生具备iterator接口的数据：（1）array（2）arguments（3）set（4）map（5）string
+        //（6）TypedArray（7）NodeList
+        //工作原理
+        //（1）创建一个指针对象，指向当前数据结构的起始位置
+        // （2）第一次调用对象的next方法，指针自动指向数据结构的第一个成员
+        //（3）接下来不断调用next方法，指针一直往后移动，直到指向最后一个成员
+        // （4）每调用next方法返回一个包含value和done属性的对象
+
+        const xiyou = ['唐僧', '猪八戒', '沙僧', '孙悟空'];
+        for (let k of xiyou) {
+            console.log(k);
+        }
+        console.log(xiyou);
+        let iterator = xiyou[Symbol.iterator]();
+        //console.log(iterator);
+        console.log(iterator.next());
+        console.log(iterator.next());
+        console.log(iterator.next());
+        console.log(iterator.next());
+    </script>
+</body>
+
+</html>

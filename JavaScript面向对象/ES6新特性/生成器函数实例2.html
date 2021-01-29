@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        //模拟获取  1用户数据  2订单数据 3商品数据
+        function getUsers() {
+            setTimeout(() => {
+                let date = '用户数据';
+                //调用next方法,并把数据传入
+                iterator.next(date);
+            }, 1000)
+        }
+
+        function getOrders() {
+            setTimeout(() => {
+                let date = '订单数据';
+                iterator.next(date);
+            }, 1000)
+        }
+
+        function getGodds() {
+            setTimeout(() => {
+                let date = '商品数据';
+                iterator.next(date);
+            }, 1000)
+        }
+
+        //创建一个生成器函数
+        function* gen() {
+                let users = yield getUsers();
+                console.log(users);
+                let orders = yield getOrders();
+                console.log(orders);
+                let goods = yield getGodds();
+                console.log(goods);
+            }
+            //调用生成器函数
+        let iterator = gen();
+        iterator.next();
+    </script>
+</body>
+
+</html>
