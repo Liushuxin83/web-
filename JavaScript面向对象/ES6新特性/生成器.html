@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        //生成器其实就是一个特殊的函数
+        //异步编程，纯回调函数  
+        //yield作为函数代码的分隔符
+        function* gen() {
+            console.log("1");
+            yield '1111';
+            console.log("2");
+            yield '2222';
+            console.log("3");
+            yield '3333';
+            console.log("4");
+        }
+        let iterator = gen();
+        //console.log(iterator);
+        console.log(iterator.next());
+        console.log(iterator.next());
+        console.log(iterator.next());
+        console.log(iterator.next());
+
+
+        //遍历
+        // for (let k of gen()) {
+        //     console.log(k);
+        // }
+    </script>
+</body>
+
+</html>
