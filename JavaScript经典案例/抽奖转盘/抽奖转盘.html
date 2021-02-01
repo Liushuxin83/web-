@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			#father{
+				width: 600px;
+				height: 540px;
+				border: 1px solid red;
+				margin: 0 auto;
+			}
+			#father>div{
+				width: 33%;
+				height: 33%;
+				border: 1px solid red;
+				float: left;
+				line-height: 200px;
+				font-size: 30px;
+				text-align: center;
+			}
+			#start{
+				cursor: pointer;
+				background-color: pink;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="father">
+			<div class="option">抱抱</div>
+			<div class="option">亲亲</div>
+			<div class="option">举高高</div>
+			<div class="option">按摩</div>
+			<div id="start">开始抽奖</div>
+			<div class="option">买好吃</div>
+			<div class="option">买口红</div>
+			<div class="option">买包包</div>
+			<div class="option">睡觉觉</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		//逻辑功能：
+		//1.点击开始抽奖，触发一个定时器
+		//2.定时器内部，随机产生一个数，通过这个随机数来获取奖品元素
+		//3.必须设置一个终止条件来停止定时器
+		var start = document.querySelector('#start');
+		var options = document.querySelectorAll('.option');
+		
+		
+		var timer = null;//防止多次点击，开启多个定时器
+		start.addEventListener('click',function(){
+			var num=0;
+			if(timer==null){
+				timer = setInterval(function(){
+					num++;//1000毫秒的时候加1
+					//生成0到7个随机数,通过数组下标获取具体选中的元素
+					//乘以（大数减去小数）+小数
+					random = Math.round(Math.random()*(options.length-1-0)+0);
+					//console.log(random);
+					//用排他思想先把所有颜色清空
+					for(var i=0;i<options.length;i++){
+						options[i].style.backgroundColor='#fff';
+					}
+					options[random].style.backgroundColor='orange';
+					console.log(random);
+					//结束定时器，添加终止条件
+					// if(num>=50){
+					// 	num=50;
+					// }
+					if(num==50){
+						setTimeout(function(){
+							alert("恭喜你获得XXX的"+options[random].innerHTML);
+						},700)
+						clearInterval(timer);
+						timer = null;
+					}
+				},100)
+			}
+		})
+	</script>
+</html>
