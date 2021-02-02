@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			.tab{
+				width: 500px;
+				height: 100px;
+				border-collapse: collapse;
+				margin: 0 auto;
+			}
+			.tab td,th{
+				border: 1px solid #000;
+			}
+		</style>
+	</head>
+	<body>
+		<table class="tab">
+			<thead>
+				<th><button type="button" class="all">全选</button>
+				<button type="button" class="noAll">全不选</button>
+				</th>
+				<th>商品名称</th>
+				<th>单价</th>
+				<th>数量</th>
+				<th>小计</th>
+				<th>操作</th>
+			</thead>
+			<tbody>
+				<tr>
+					<td><input type="checkbox" class="ed"/></td>
+					<td>电脑</td>
+					<td class="price">200</td>
+					<td>
+						<button type="button" class="sub">-</button>
+						<span>1</span>
+						<button type="button" class="add">+</button>
+					</td>
+					<td class="small_total">200</td>
+					<td>删除</td>
+				</tr>
+				<tr>
+					<td><input type="checkbox" class="ed"/></td>
+					<td>手机</td>
+					<td class="price">100</td>
+					<td>
+						<button type="button" class="sub">-</button>
+						<span>1</span>
+						<button type="button" class="add">+</button>
+					</td>
+					<td class="small_total">100</td>
+					<td>删除</td>
+				</tr>
+			</tbody>
+		</table>
+		<div>
+			<span>总计:</span>
+			<span class="sum">0</span>
+		</div>
+	</body>
+	<script type="text/javascript">
+		//逻辑功能：
+		
+		//1.加减（小计）
+		var tab = document.querySelector('.tab');
+		var add = tab.querySelectorAll('.add');
+		var sub = tab.querySelectorAll('.sub');
+		var all = tab.querySelector('.all');
+		var noAll = tab.querySelector('.noAll');
+		var sum_total = document.querySelector('.sum');
+		var small_total = tab.querySelectorAll('.small_total');
+		var ed = tab.querySelectorAll('.ed');
+		// ed.forEach(function(val,index){
+		// 	ed[index].onclick = function(){
+		// 		console.log(ed[index].checked);
+		// 	}
+		// })
+		
+		//加载页面时要调用总计方法
+		getSum();
+		add.forEach(function(val,index){
+			add[index].addEventListener('click',function(){
+				//1.1算出数量变化
+				var num = parseInt(this.previousElementSibling.innerHTML);
+				//console.log(typeof num);
+				num++;
+				this.previousElementSibling.innerHTML = num;
+				
+				//1.2 算出小计的价格  用数量乘以价格
+				var price = parseInt(this.parentNode.previousElementSibling.innerHTML);
+				this.parentNode.nextElementSibling.innerHTML = price*num;
+				
+				//调用总计
+				getSum();
+			})
+		})
+		
+		sub.forEach(function(val,index){
+			sub[index].addEventListener('click',function(){
+				//1.1算出数量变化
+				var num = parseInt(this.nextElementSibling.innerHTML);
+				//console.log(typeof num);
+				num--;
+				if(num<1) num=1;
+				this.nextElementSibling.innerHTML = num;
+				
+				//1.2 算出小计的价格  用数量乘以价格
+				var price = parseInt(this.parentNode.previousElementSibling.innerHTML);
+				this.parentNode.nextElementSibling.innerHTML = price*num;
+				
+				//调用总价
+				getSum();
+			})
+		})
+		
+		
+		//总价=小计之和（选中条件下的）
+		function getSum(){
+			var sum = 0;
+			for(var i = 0;i<small_total.length;i++){
+				//添加选中判断条件
+				if(small_total[i].parentNode.children[0].children[0].checked){
+					sum += parseInt(small_total[i].innerHTML);
+				}
+				
+			}
+			sum_total.innerHTML = sum;
+		}
+		
+		
+		
+		//全选，选中，
+		all.addEventListener('click',function(){
+			ed.forEach(function(val,index){
+				ed[index].checked = 'checked';
+			})
+			getSum();
+		})
+		ed.forEach(function(val,index){
+			ed[index].onclick=function(){
+				getSum();
+			}
+		})
+		
+		
+		noAll.addEventListener('click',function(){
+			ed.forEach(function(val,index){
+				ed[index].checked = '';
+			})
+			getSum();
+		})
+		
+		
+	</script>
+</html>
