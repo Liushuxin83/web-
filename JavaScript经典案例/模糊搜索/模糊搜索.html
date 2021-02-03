@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+
+			.box {
+				overflow: hidden;
+				width: 400px;
+				height: 700px;
+				margin: 100px auto;
+			}
+
+			.in {
+				width: 300px;
+				height: 30px;
+				outline: none;
+				font-size: 20px;
+			}
+
+			.btn {
+				width: 91px;
+				height: 33px;
+				transform: translateY(-1px);
+			}
+
+			.show {
+				display: none;
+				width: 398px;
+				height: 300px;
+				border: 1px solid #000;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<input class="in" id="in" type="text" />
+			<button type="button" id="btn" class="btn">查询</button>
+			<div class="show"></div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var arr = ['淘宝', '淘宝首页', '淘宝购物车', '京东', '京东购物车', '天猫', '天猫购物车', '天猫首页', '京东首页', '淘宝支付', '微信支付', '支付宝', '银行卡支付'];
+
+
+		var input = document.querySelector('#in');
+		var btn = document.querySelector('#btn');
+		var show = document.querySelector('.show');
+		input.addEventListener('keyup', function() {
+			show.style.display = 'block';
+			//文本框的内的值与arr内的值匹配indexOf
+			var str = '';
+			arr.forEach(function(val) {
+				var res = val.indexOf(input.value);
+				//console.log(res);
+				if (res != -1) {
+					str += '<p>' + val + '</p>';
+				}
+			})
+			//如果文本框的值为空或者为错误时，应给用户提示
+			if (!str) {
+				show.innerHTML = '<p>查询不到</p>';
+			} else if (!input.value) {
+				show.style.display = 'none';
+			} else {
+				show.innerHTML = str;
+			}
+
+
+
+		})
+		input.addEventListener('blur', function() {
+			show.style.display = 'none';
+		})
+		input.addEventListener('focus', function() {
+			// if(this.value!=''){
+			// 	show.style.display = 'block';
+			// }else{
+			// 	show.innerHTML = '<p>'+input.value+'</p>';
+			// }	
+			show.style.display = 'block';
+			this.keyup();
+			//show.innerHTML = '<p>' + input.value + '</p>';
+		})    
+		//判断一个按钮是否被点击
+		var cli = false;
+		btn.addEventListener('click', function() {
+			cli = true;
+		})
+	</script>
+</html>
