@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			.add{
+				width: 400px;
+				height: 200px;
+				border: 3px solid #000;
+				margin: 10px auto;
+			}
+			.tab{
+				width: 400px;
+				border: 1px solid #000;
+				border-collapse: collapse;
+				margin: 0 auto;
+			}
+			.tab th,
+			td{
+				border: 1px solid #000;
+				text-align: center;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="add">
+			<span>姓名：</span><input type="text"/><br>
+			<span>年龄：</span><input type="text"/><br>
+			<span>性别：</span><select id="sex">
+			<option>请选择</option>
+				<option>男</option>
+				<option>女</option>
+			</select><br>
+			<span>手机号：</span><input type="text"/><br>
+			<button type="button" class="btn">确认提交</button>
+		</div>
+		<table class="tab">
+			<thead>
+			<tr>
+				<th>姓名</th>
+				<th>年龄</th>
+				<th>性别</th>
+				<th>手机</th>
+				<th>操作</th>
+			</tr>
+			</thead>
+			<tbody class="tbody">
+			<!-- <tr>
+				<td>张三</td>
+				<td>18</td>
+				<td>男</td>
+				<td>1111111111</td>
+				<td><span>修改</span>&nbsp;&nbsp;<span>删除</span></td>
+			</tr> -->
+			
+			</tbody>
+		</table>
+	</body>
+	
+	
+	
+	<script type="text/javascript">
+		//逻辑功能：
+		//1.添加信息并展示
+		//2.删除修改操作
+		//1.先把数据push到一个数组当中，然后对数组进行遍历（对tr的循环，拼接之后，赋值给tbody的innerHTML）
+		
+		var btn = document.querySelector('.btn');
+		var sex = document.querySelector('#sex');
+		var add = document.querySelector('.add');
+		var input = add.querySelectorAll('input');
+		var tbody = document.querySelector('.tbody');
+		
+		//模拟数据
+		// var stus = [{name:"李四",age:19,sex="男",phone:110},
+		// {name:"张三",age:29,sex="男",phone:120}];
+		var stus = [];
+		//点击提交之后，把他封装成对象的形式，然后push到数组中
+		btn.addEventListener('click',function(){
+			var obj = {
+				name:input[0].value,
+				age:input[1].value,
+				sex:sex.value,
+				phone:input[2].value,
+				}
+				stus.push(obj);
+				//console.log(stus);
+				//对数组进行遍历
+				var tr = '';
+				stus.forEach(function(val,index){
+					tr += "<tr>"+
+						"<td>"+val.name+"</td>"+
+						"<td>"+val.age+"</td>"+
+						"<td>"+val.sex+"</td>"+
+						"<td>"+val.phone+"</td>"+
+						"<td><span>修改</span>&nbsp;&nbsp;<span onclick='del("+index+")'>删除</span></td>"+
+					"</tr>"
+				})
+				//console.log(tr);
+				tbody.innerHTML = tr;
+				//添加之后 input清空
+				input[0].value='';
+				input[1].value='';
+				sex.value='请选择';
+				input[2].value='';
+		})
+		
+		function del(index){
+			//console.log(index);
+			//删除数组中的这条信息!!!!!!!
+			stus.splice(index,1);
+			//删除DOM元素
+			tbody.removeChild(tbody.children[index]);
+			
+		}
+	</script>
+</html>
