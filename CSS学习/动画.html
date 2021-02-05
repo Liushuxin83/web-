@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			#father{
+				width: 200px;
+				height: 200px;
+				background-color: green;
+				margin: 0 auto;
+				
+			}
+			#father:hover{
+				animation-name: my;
+				animation-duration: 2s;
+			}
+			@keyframes my{
+				0%{
+					width:200px;
+					height: 200px;
+				}
+				25%{
+					width: 150px;
+					height: 150px;
+				}
+				50%{
+					width: 100px;
+					height: 100px;
+				}
+				75%{
+					width: 50px;
+					height: 50px;
+				}
+				100%{
+					width: 20px;
+					height: 20px;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<div id="father">
+			
+		</div>
+	</body>
+</html>
