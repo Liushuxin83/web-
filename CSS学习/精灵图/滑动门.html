@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        a {
+            display: inline-block;
+            height: 33px;
+            background: url() no-repeat;
+            padding-left: 15px;
+            color: #fff;
+        }
+        
+        a span {
+            display: inline-block;
+            height: 33px;
+            /* span背景图片需要右对齐 */
+            background: url() no-repeat right top;
+            padding-right: 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 为了使各种特殊形状的背景能够自适应元素中文本内容的多少，出现了css滑动门技术 -->
+    <!-- 他从新的角度构建页面，使各种特殊形状的背景能够自由拉伸滑动，以适应元素内部的文本内容 -->
+    <!-- 最常见于各种导航栏的滑动门 -->
+    <!-- 核心技术：利用css精灵（主要是背景位置）和盒子padding撑开宽度，以便适应不同字数的导航栏 -->
+    <!-- a是做左侧小圆角，span是做右侧小圆角  因为整个导航栏都是链接，所以a包含span -->
+    <!-- 因为是滑动门，左右推拉，跟文字多少有关系，此时需要文字撑开盒子，就要用到行内块 -->
+    <a href="#">
+        <span>1111111111</span>
+    </a>
+</body>
+
+</html>

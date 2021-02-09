@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            margin-top: 20px;
+        }
+        
+        div {
+            position: relative;
+            float: left;
+            width: 200px;
+            height: 300px;
+            border: 1px solid#ccc;
+            margin-left: -1px;
+            margin-top: -1px;
+        }
+        
+        div:hover {
+            /* position: relative; */
+            /* 都是定位的盒子用z-index提高层级 */
+            z-index: 1;
+            color: #1BA1E6;
+            /* 要让当前鼠标经过的div升到最高处：定位的盒子是最高层 ,只能用相对定位，因为它占位置*/
+            border: 1px solid#f40;
+        }
+    </style>
+</head>
+
+<body>
+    <div>11</div>
+    <div>11</div>
+    <div>11</div>
+    <div>11</div>
+    <div>11</div>
+    <div>11</div>
+    <div>11</div>
+    <div>11</div>
+    <div>11</div>
+    <div>11</div>
+</body>
+
+</html>

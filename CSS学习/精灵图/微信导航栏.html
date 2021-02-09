@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            background: url(../img/bg.jpg) repeat-x;
+        }
+        
+        li {
+            list-style: none;
+        }
+        
+        .nav li {
+            float: left;
+            margin: 0 10px;
+        }
+        
+        .nav {
+            margin: 20px auto;
+        }
+        
+        .nav a {
+            display: inline-block;
+            height: 33px;
+            background: url(../img/bghead.png) no-repeat;
+            padding-left: 15px;
+            color: #fff;
+            line-height: 33px;
+        }
+        
+        .nav a span {
+            display: inline-block;
+            height: 33px;
+            background: url(../img/bghead.png) no-repeat right;
+            padding-right: 15px;
+        }
+        
+        .nav a:hover,
+        .nav a:hover span {
+            background-image: url(../img/ao.png);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="nav">
+        <ul>
+            <li>
+                <a href="#">
+                    <span>首页</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span>公众平台</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span>开放平台</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span>12345</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</body>
+
+</html>
