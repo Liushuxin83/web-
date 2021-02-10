@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+
+			.menu {
+				width: 150px;
+				height: 700px;
+				background-color: #ccc;
+				margin: 0 auto;
+			}
+			.menu a {
+				display: block;
+				text-align: center;
+				text-decoration: none;
+				color: red;
+				margin: 10px 0 0 0;
+			}
+
+			.menu a:hover {
+				background-color: gray;
+			}
+
+			.menuSpan {
+				display: block;
+				width: 150px;
+				height: 30px;
+				background-color: pink;
+				text-align: center;
+				line-height: 30px;
+				cursor: pointer;
+			}
+
+			.collapsed {
+				overflow: hidden;
+				height: 30px;
+			}
+		</style>
+		<script src="move().js" type="text/javascript" charset="utf-8"></script>
+		<script src="operate-class.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="my_menu" class="menu">
+			<div>
+				<span class="menuSpan">111111</span>
+				<a href="#">图像优化</a>
+				<a href="#">图像优化</a>
+				<a href="#">图像优化</a>
+				<a href="#">图像优化</a>
+				<a href="#">图像优化</a>
+			</div>
+			<div class="collapsed">
+				<span class="menuSpan">222222</span>
+				<a href="#">图像优化</a>
+				<a href="#">图像优化</a>
+				<a href="#">图像优化</a>
+			</div>
+			<div class="collapsed">
+				<span class="menuSpan">333333</span>
+				<a href="#">图像优化</a>
+				<a href="#">图像优化</a>
+				<a href="#">图像优化</a>
+				<a href="#">图像优化</a>
+				<a href="#">图像优化</a>
+			</div>
+			<div class="collapsed">
+				<span class="menuSpan">444444</span>
+				<a href="#">图像优化</a>
+				<a href="#">图像优化</a>
+				<a href="#">图像优化</a>
+				<a href="#">图像优化</a>
+				<a href="#">图像优化</a>
+				<a href="#">图像优化</a>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		window.onload = function() {
+			//解决不隐藏问题
+			var menu = document.querySelector('.menu');
+			var menu_div = menu.querySelectorAll('div');
+			for(var i=0;i<menu_div.length;i++){
+				menu_div[i].style.overflow='hidden';
+			}
+			
+			
+			
+			var menuSpan = document.querySelectorAll('.menuSpan');
+			//定义一个变量，来保存当前打开的菜单
+			var openDiv = menuSpan[0].parentNode;
+			//console.log(menuSpan.length);
+			for (var i = 0; i < menuSpan.length; i++) {
+				menuSpan[i].addEventListener('click', function() {
+					//alert(111);
+					var parentDiv = this.parentNode;
+					
+					
+
+					//在切换类之前，获取元素的高度
+					var begin = parentDiv.offsetHeight;
+
+
+					//console.log(parentDiv);//要操作的div
+					toggleClass(parentDiv, 'collapsed');
+
+					//在切换类之后，来获取一个高度
+					var end = parentDiv.offsetHeight;
+					//console.log('begin='+begin+',end='+end);
+					//动画效果就是将高度从begin向end过度
+					//将元素的高度重置为begin
+					parentDiv.style.height = begin + 'px';
+					
+					//执行动画，从begin向end过度
+					move(parentDiv,'height',1,end,function(){
+						//动画执行完毕，行内样式已经没有存在的意义了，要删除
+						parentDiv.style.height = '';
+					});
+
+					//判断openDiv与parentDiv是否相同
+					if (openDiv != parentDiv && !hasClass(openDiv,'collapsed')) {
+						//打开菜单以后，应该关闭之前打开的菜单
+						//为了可以统一处理动画过度效果，我们希望将addClass改为toggleClass
+						//此处toggleClass（）不需要有移除功能
+						//toggleClass(openDiv,'collapsed');
+						//addClass(openDiv, 'collapsed');
+						toggleMenu(openDiv);
+					}
+
+
+
+					//修改openDiv为当前打开的菜单
+					openDiv = parentDiv;
+				})
+			}
+			
+			/*
+			用来切换菜单的折叠和显示状态
+			*/
+			function toggleMenu(obj){
+				//在切换类之前，获取元素的高度
+				var begin = obj.offsetHeight;
+				
+				
+				//console.log(parentDiv);//要操作的div
+				toggleClass(obj, 'collapsed');
+				
+				//在切换类之后，来获取一个高度
+				var end = obj.offsetHeight;
+				//console.log('begin='+begin+',end='+end);
+				//动画效果就是将高度从begin向end过度
+				//将元素的高度重置为begin
+				obj.style.height = begin + 'px';
+				
+				//执行动画，从begin向end过度
+				move(obj,'height',1,end,function(){
+					//动画执行完毕，行内样式已经没有存在的意义了，要删除
+					obj.style.height = '';
+				});
+				
+			}
+		}
+	</script>
+</html>
