@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/focus.css"/>
+		<!-- 这个动画必须写到focus.js上面，必须先要有这个动画 -->
+		<script src="js/animate.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/focus.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div class="focus">
+			<ul class="focus_ul">
+				<li><a href="javascript:;"><img src="images/focus1.jpg" ></a></li>
+				<li><a href="javascript:;"><img src="images/focus2.jpg" ></a></li>
+				<li><a href="javascript:;"><img src="images/focus3.jpg" ></a></li>
+				<li><a href="javascript:;"><img src="images/focus4.jpg" ></a></li>
+			</ul>
+			<ul class="smallcircle">
+				
+			</ul>
+			<a class="arrow_l" href="javascript:;">&lt;</a>
+			<a class="arrow_r" href="javascript:;">&gt;</a>
+		</div>
+	</body>
+	<script type="text/javascript">
+		//轮播图（焦点图）原理
+		//1.动态生成小圆圈
+		//2.小圆圈的排他思想，点击当前小圆圈，就添加current类，其余的小圆圈就移出这个current类，
+		//注意：在生成小圆圈的同时就可以绑定这个点击事件了
+		//3.点击小圆圈图片滚动
+		//使用动画的前提是该元素必须有定位
+		//ul做动画即可，而不是li
+		//滚动图片的核心算法是：点击某个小圆圈，就让图片滚动，小圆圈的索引号乘以图片的宽度作为ul移动的距离！！！！！
+		//此时需要知道小圆圈的索引号，可以再生成小圆圈的时候，给他设置一个自定义属性，点击的时候获取这个自定义属性即可。
+		//4.点击右侧按钮图片就会滚动
+		//可以声明一个变量num，点击一次，自增1，让着变量乘以图片的宽度，即使ul的移动距离即可
+		//图片无缝滚动原理：把ul的第一个li复制一份放到ul的最后面，当图片滚动到克隆的最后一张图片时，让ul快速的、不作动画的跳到最左侧，让left为0即可。同时num要赋值为0，这样就可以重新再次滚动图片了。
+		//因为克隆图片是在生成小圆圈（后面）之外克隆的，所有小圆圈不会变多。
+		//6.点击右侧按钮，小圆圈跟随变化
+		//最简单的做法是声明一个变量circle，每次点击自增1，注意！！！左侧按钮也需要这个变量，因此要声明全局变量
+		//7.节流阀
+		//目的：当上一个函数动画内容执行完毕，再去执行下一个函数动画，让事件无法连续触发
+		//核心实现思路：利用回调函数，添加一个变量来控制，锁住函数和解锁函数，开始设置一个变量var flag=true;
+		//if(flag){flag=false;do something}关闭水龙头
+		//利用回调函数打开水龙头，动画执行完毕，flag=true
+	</script>
+</html>
