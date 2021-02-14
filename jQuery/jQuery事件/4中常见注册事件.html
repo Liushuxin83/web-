@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../jquery-3.4.1.min.js"></script>
+    <style>
+        div {
+            width: 100px;
+            height: 100px;
+            background-color: #000;
+        }
+    </style>
+</head>
+
+<body>
+    <div></div>
+    <ul>
+        <li>111111111</li>
+        <li>111111111111</li>
+        <li>111111111111111</li>
+        <li>1111111111111111111</li>
+        <li>111111111111111</li>
+    </ul>
+    <ol>
+
+    </ol>
+    <script>
+        $(function() {
+            //1.单个事件注册
+            // $("div").click(function() {
+            //     $(this).css("background", "red");
+            // })
+            //2.事件处理on,处理一个或多个事件
+            //语法 element.on(evevts,[selector],fn)
+            //selector：元素的子元素选择器
+            $("div").on({
+                mouseenter: function() {
+                    $(this).css("background", "red");
+                },
+                click: function() {
+                    $(this).css("background", "pink");
+                },
+                mouseleave: function() {
+                    $(this).css("background", "green");
+                }
+            })
+
+            //on方法优势，可以实现事件委托
+            $("ul").on("click", "li", function() {
+                    console.log(111);
+                })
+                //on方法优势，可以给动态添加的元素绑定事件，!!!!!!!!!!!!
+            $("ol li").click(function() {
+                alert(111);
+            })
+            $("ol").on("click", "li", function() {
+                alert(2222);
+            })
+            var li = $("<li>我是ol的小li</li>")
+            $("ol").append(li);
+
+
+        })
+    </script>
+</body>
+
+</html>
