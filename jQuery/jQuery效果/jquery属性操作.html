@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../jquery-3.4.1.min.js"></script>
+</head>
+<input type="checkbox" checked>
+<div index="1" data-index="2">我是div</div>
+<span></span>
+
+<body>
+
+</body>
+<script>
+    //设置或获取元素固有属性值（该元素本身自带的属性）：prop（）
+    //设置或获取元素自定义元素属性值attr（）
+    //数据缓存：data（）；可以在指定的元素上存取数据，并不会修改DOM元素结构，一旦页面刷新，之前存放的数据也会移出
+    $(function() {
+        $("input").change(function() {
+            console.log($(this).prop("checked"));
+        })
+
+        console.log($("div").prop("index"));
+        console.log($("div").attr("index"));
+        console.log($("div").attr("data-index")); //获取h5自定义属性
+        $("span").data("uname", "andy");
+        console.log($("span").data("uname")); //DOM里面看不到
+        console.log($("div").data("index")); //获取data-index得到数字型,不用写data-
+    })
+</script>
+
+</html>

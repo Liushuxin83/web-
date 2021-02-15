@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../jquery-3.4.1.min.js"></script>
+    <style>
+        div {
+            width: 800px;
+            height: 500px;
+            margin: 0 auto;
+            overflow: hidden;
+            background-color: #000;
+        }
+        
+        ul {
+            margin: 12px auto;
+        }
+        
+        ul li {
+            float: left;
+            list-style: none;
+            width: 230px;
+            height: 230px;
+            margin: 0 20px 10px 0;
+            background-color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+</body>
+<script>
+    $(function() {
+        $("ul li").hover(function() {
+            $(this).siblings().stop().fadeTo(400, 0.3);
+        }, function() {
+            $(this).siblings().stop().fadeTo(400, 1);
+        })
+    })
+</script>
+
+</html>
