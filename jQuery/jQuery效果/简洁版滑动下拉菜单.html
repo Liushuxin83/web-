@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../jquery-3.4.1.min.js"></script>
+    <style>
+        div {
+            display: none;
+            width: 300px;
+            height: 600px;
+            background-color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <button>下拉滑动</button>
+    <button>上拉滑动</button>
+    <button>切换滑动</button>
+    <div></div>
+</body>
+<script>
+    $(function() {
+        $('button').eq(0).click(function() {
+            $('div').slideDown();
+
+        })
+        $('button').eq(1).click(function() {
+            $('div').slideUp();
+
+        })
+        $('button').eq(2).click(function() {
+            //stop结束上一次动画，必须写在前面
+            $('div').stop().slideToggle(500);
+        })
+
+    })
+</script>
+
+</html>

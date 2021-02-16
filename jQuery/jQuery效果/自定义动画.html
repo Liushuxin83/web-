@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../jquery-3.4.1.min.js"></script>
+    <style>
+        div {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background-color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <button>动起来</button>
+    <div></div>
+</body>
+<script>
+    //animate（params,[speed],[easing],[function]）
+    //params：想要更改的样式属性，以对象形式传递，必须写。属性名可以不带引号，如果是复合属性则
+    //需要采取驼峰命名法 borderLeft，其余参数可省略
+    $(function() {
+        $("button").click(function() {
+            $("div").animate({
+                left: 500,
+                top: 300,
+                opacity: .4
+            }, 1000);
+        })
+    })
+</script>
+
+</html>

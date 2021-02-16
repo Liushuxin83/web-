@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../jquery-3.4.1.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        .tab {
+            width: 500px;
+            border-collapse: collapse;
+            margin: 0 auto;
+        }
+        
+        .tab td,
+        th {
+            border: 1px solid #000;
+        }
+        
+        .tab .num {
+            width: 20px;
+        }
+        
+        .tab .add,
+        .sub {
+            width: 20px;
+        }
+        
+        .current {
+            background-color: pink;
+        }
+    </style>
+</head>
+
+<body>
+    <table class="tab">
+        <thead>
+            <th>全选 <input type="checkbox" name="" value="" class="checkAll">
+                <input type="checkbox" name="" value="" class="checkAll">
+            </th>
+            <th>商品名称</th>
+            <th>单价</th>
+            <th>数量</th>
+            <th>小计</th>
+            <th>操作</th>
+        </thead>
+        <tbody>
+            <tr>
+                <td><input type="checkbox" class="ed" /></td>
+                <td>电脑</td>
+                <td class="price">￥200.20</td>
+                <td>
+                    <button type="button" class="sub">-</button>
+                    <input type="text" name="" value="1" class="num">
+                    <button type="button" class="add">+</button>
+                </td>
+                <td class="small_total">￥200.20</td>
+                <td class="delete">删除</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" class="ed" /></td>
+                <td>手机</td>
+                <td class="price">￥100.30</td>
+                <td>
+                    <button type="button" class="sub">-</button>
+                    <input type="text" name="" value="1" class="num">
+                    <button type="button" class="add">+</button>
+                </td>
+                <td class="small_total">￥100.30</td>
+                <td class="delete">删除</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" class="ed" /></td>
+                <td>空调</td>
+                <td class="price">￥1000.99</td>
+                <td>
+                    <button type="button" class="sub">-</button>
+                    <input type="text" name="" value="1" class="num">
+                    <button type="button" class="add">+</button>
+                </td>
+                <td class="small_total">￥1000.99</td>
+                <td class="delete">删除</td>
+            </tr>
+        </tbody>
+    </table>
+    <div>
+        <span>已选<span style="color: red;" class="num_sum">1</span>件商品</span>
+        <span>总计:</span>
+        <span class="sum" style="color: red;">0</span>
+        <div><span style="color: red;" class="delSome">删除选中商品</span>
+            <span style="color: red;" class="delAll">清空购物车</span>
+        </div>
+    </div>
+
+    <script>
+        //里面三个小的复选按钮选中状态跟着 全选按钮走
+        //因为checked是复选框的固有属性，此时利用prop（）获取和设置该属性
+        $(function() {
+            getSum();
+            $(".checkAll").change(function() {
+                    // console.log($(this).prop("checked"));//全选按钮的状态
+                    $(".ed,.checkAll").prop("checked", $(this).prop("checked"));
+                    getSum();
+                    if ($(".ed,.checkAll").prop("checked")) {
+                        //如果全选，让所有商品添加类名（背景颜色）
+                        $(".tab tbody").children().addClass("current");
+                    } else {
+                        $(".tab tbody").children().removeClass("current");
+                    }
+                })
+                //如果所有小按钮的个数都被选了，全选按钮就选上，如果小按钮没有被选上，则全选按钮就不选上
+                //：checked选择器，查找本选中的表单元素
+            $(".ed").change(function() {
+                // console.log($(".ed:checked").length);//小复选框选中的个数
+                // console.log($(".ed").length);
+                //console.log($(this).prop("checked"));
+                if ($(".ed:checked").length === $(".ed").length) {
+                    $(".checkAll").prop("checked", true);
+                } else {
+                    $(".checkAll").prop("checked", false);
+                }
+                getSum();
+                if ($(this).prop("checked")) {
+                    $(this).parents("tr").addClass("current");
+                } else {
+                    $(this).parents("tr").removeClass("current");
+                }
+            })
+
+            $(".add").click(function() {
+                let n = parseInt($(this).siblings(".num").val());
+                //console.log(n);
+                n++;
+                $(this).siblings(".num").val(n);
+                let price = $(this).parent().siblings(".price").html();
+                price = price.substr(1);
+                //console.log(price);
+                $(this).parent().siblings(".small_total").text("￥" + (n * price).toFixed(2));
+                getSum();
+            })
+            $(".sub").click(function() {
+                    let n = parseInt($(this).siblings(".num").val());
+                    //console.log(n);
+                    if (n === 1) {
+                        return false;
+                    }
+                    n--;
+                    $(this).siblings(".num").val(n);
+                    let price = $(this).parent().siblings(".price").html();
+                    price = price.substr(1);
+                    //console.log(price);
+                    $(this).parent().siblings(".small_total").text("￥" + (n * price).toFixed(2));
+                    getSum();
+                })
+                //用户也可以直接修改表单num里面的值（小bug），同样计算小计
+            $(".num").change(function() {
+                let n = $(this).val();
+                let price = $(this).parent().siblings(".price").html();
+                price = price.substr(1);
+                $(this).parent().siblings(".small_total").text("￥" + (n * price).toFixed(2));
+                getSum();
+            })
+
+            function getSum() {
+                let count = 0; //计算总件数
+                let money = 0; //计算总价钱
+                $(".num").each(function(index) {
+                    if ($(".ed").eq(index).prop("checked") == true) {
+                        count += parseInt($(".num").eq(index).val());
+                        money += parseFloat($(".small_total").eq(index).text().substr(1));
+                    }
+                })
+                $(".num_sum").html(count);
+                $(".sum").html(money.toFixed(2));
+            }
+
+            //删除商品模块
+            //点击删除之后一定是删除当前的商品，所以从$(this)出发
+            $(".delete").click(function() {
+                    //删除的是当前的商品
+                    $(this).parent().remove();
+                    $(".ed").change();
+                    getSum();
+                    clearCheckAll();
+                })
+                //删除选定的商品:小的复选框如果选中就删除对应的商品
+            $(".delSome").click(function() {
+                    //删除的是选中的商品
+                    $(".ed:checked").parent().parent().remove();
+                    getSum();
+                    clearCheckAll();
+                })
+                //清空购物车
+            $(".delAll").click(function() {
+                $(".tab tbody").empty();
+                getSum();
+                clearCheckAll();
+            })
+
+            function clearCheckAll() {
+                if ($(".tab tbody")[0].innerText == '') {
+                    $(".checkAll").prop("checked", false);
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
