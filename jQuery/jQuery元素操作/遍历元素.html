@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../jquery-3.4.1.min.js"></script>
+</head>
+
+<body>
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+    <script>
+        //jquery隐式迭代是对同一类元素做了同样的操作，如果想要给同一类元素做不同的操作，就需要遍历
+        $(function() {
+            //$("div").css("color", "red");
+            //each（）方法遍历匹配的每一个元素，主要是DOM处理，第一个参数是每个元素的索引号，
+            //第二个参数是每个DOM元素对象而不是jQuery对象
+            //所以想要使用jQuery方法，需要给这个DOM元素转换为jQuery对象  $(element)
+            let arr = ["red", "green", "blue"];
+            let sum = 0;
+            $("div").each(function(index, domelement) {
+                // console.log(index);
+                // console.log(domelement);
+                $(domelement).css("color", arr[index]);
+                sum += parseInt($(domelement).text());
+            })
+            console.log(sum);
+
+
+            //!!!!$.eash()方法遍历元素，主要用于遍历数据，处理数据
+            $.each($("div"), function(index, domelement) {
+                console.log(index);
+                console.log(domelement);
+            })
+            $(arr).each(function(index, ele) {
+                console.log(index);
+                console.log(ele);
+            })
+            $.each(arr, function(index, ele) {
+                    console.log(index);
+                    console.log(ele);
+                })
+                //$.eash()主要是遍历数据：数组和对象
+            $.each({
+                name: 'andy',
+                age: 100
+            }, function(index, ele) {
+                console.log(index);
+                console.log(ele);
+            })
+
+        })
+    </script>
+
+
+</body>
+
+</html>
