@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form action="" id="form">
+        用户名：<input type="text" name="user" id="">
+        <hr>
+        <input type="checkbox" name="accept">接收协议
+        <hr>
+        <button>提交</button>
+    </form>
+
+    <script>
+        function query(el) {
+            return document.querySelector(el);
+        }
+        query('#form').addEventListener('submit', function(e) {
+            let user = query('[name="user"]').value.trim();
+            let accept = query('[name="accept"]').checked;
+            // console.log(user);
+            // console.log(accept);
+            if (!user || accept === false) {
+                e.preventDefault();
+                alert("请接收协议或添加用户名");
+            }
+
+        })
+    </script>
+
+</body>
+
+</html>

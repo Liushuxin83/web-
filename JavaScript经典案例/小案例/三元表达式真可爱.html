@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        function div(optios = {}) {
+            let div = document.createElement('div');
+            div.style.width = optios.width ? optios.width : '100px';
+            div.style.height = optios.height ? optios.height : '100px';
+            div.style.backgroundColor = optios.bgcolor ? optios.bgcolor : 'red';
+            document.body.appendChild(div);
+        }
+        div({
+            // width: '200px',
+            // height: '200px'
+        });
+    </script>
+</body>
+
+</html>

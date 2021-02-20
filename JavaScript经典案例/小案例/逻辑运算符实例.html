@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" name="password" placeholder="请输入密码">
+    <input type="text" name="confirm_password" placeholder="请再次输入密码">
+    <br>
+    <span name="msg"></span>
+
+
+    <script>
+        function query(name) {
+            return document.querySelector(`[name='${name}']`);
+        }
+        // console.log(query('password'));这样可以找到这个请输入密码这个input元素
+        //console.log(query('msg'));
+        // console.log(query('confirm_password'));
+        let inputs = document.querySelectorAll("[name='password'],[name='confirm_password']");
+        //console.log(inputs);
+        [...inputs].map((val) => {
+            //console.log(val);
+            val.addEventListener('keyup', function() {
+                //console.log(333);
+                //console.log(query('password').value);
+                //console.log(query('confirm_password').value);
+                //console.log(msg);
+                let msg = ''; //这个语句必须放在 keyup这个函数内，如果不放在这里面的话msg会被覆盖
+                if (query('password').value !== query('confirm_password').value ||
+                    query('password').value.length < 5
+                ) {
+                    msg = '两次密码输入不一致或密码长度小于5位';
+                }
+                query('msg').innerHTML = msg;
+            })
+        })
+    </script>
+</body>
+
+</html>
