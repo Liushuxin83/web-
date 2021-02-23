@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .current {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <div id='app'>
+        <ul>
+            <li v-bind:class="{current:currentIndex==index}" v-on:click='bianse(index)' v-for="(val,index) in movies">{{index}}---{{val}}</li>
+            <!-- <li v-bind:class="currentIndex==index?'current':'' " v-on:click='bianse(index)' v-for="(val,index) in movies">{{index}}---{{val}}</li> -->
+        </ul>
+    </div>
+    <script src='/vue.js '></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                movies: ['喜洋洋', '111111111', '2222222', 'VUE'],
+                currentIndex: 0,
+            },
+            methods: {
+                bianse: function(index) {
+                    this.currentIndex = index;
+                }
+            },
+        });
+    </script>
+</body>
+
+</html>

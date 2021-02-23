@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <!-- <div v-bind:style="{key(css属性名)：value(属性值)}" id='app'> -->
+    <!-- 100px必须加上引号，不然vue会当成变量去解析 -->
+    <!-- <div v-bind:style="{fontSize:'100px'}" id='app'> -->
+
+
+    <!-- fontSize当成一个变量使用 -->
+    <div v-bind:style="getStyle()" id='app'>
+        {{message}}
+    </div>
+    <script src='/vue.js '></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                message: '123',
+                fontSize: 100,
+                finalColor: 'red',
+            },
+            methods: {
+                getStyle: function() {
+                    return {
+                        fontSize: this.fontSize + 'px',
+                        color: this.finalColor
+                    }
+                }
+            },
+        });
+    </script>
+</body>
+
+</html>

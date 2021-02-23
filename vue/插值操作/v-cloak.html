@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #app[v-cloak] {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id='app' v-cloak>
+        {{message}}
+    </div>
+    <script src='/vue.js '></script>
+    <script>
+        //在某些情况下，浏览器可能会直接出现未编译的mustache标签 
+        setTimeout(() => {
+            const app = new Vue({
+                el: '#app',
+                data: {
+                    message: '123',
+                }
+            });
+        }, 2000)
+    </script>
+</body>
+
+</html>
