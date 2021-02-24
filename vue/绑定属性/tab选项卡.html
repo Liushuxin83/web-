@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="/vue.js"></script>
+    <style>
+        #app {
+            width: 500px;
+            height: 300px;
+            border: 1px solid #000;
+        }
+        
+        #app ul li {
+            list-style: none;
+            float: left;
+            width: 50px;
+            height: 30px;
+            text-align: center;
+            line-height: 30px;
+            border: 1px solid #000;
+            margin: 0 20px 0 0;
+        }
+        
+        .tab {
+            width: 500px;
+            overflow: hidden;
+        }
+        
+        .tab div {
+            display: none;
+            width: 500px;
+            height: 200px;
+            border: 1px solid #000;
+            text-align: center;
+            margin-top: 80px;
+        }
+        
+        .titlecurrent {
+            background-color: aqua;
+        }
+        
+        .tab div img {
+            width: 400px;
+            height: 200px;
+        }
+        
+        .tab .divcurrent {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div class="tab">
+            <ul>
+                <li v-on:click="handel(index)" :key="val.id" :class="currentIndex==index?'titlecurrent':''" v-for='(val,index) in list'>{{val.title}}</li>
+            </ul>
+            <div :key="val.id" :class="currentIndex==index?'divcurrent':''" v-for="(val,index) in list">
+                <img :src="val.imgPath" alt="">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let vm = new Vue({
+            el: '#app',
+            data: {
+                currentIndex: 0, //表示当前所以
+                list: [{
+                    id: 1,
+                    title: '1.jpg',
+                    imgPath: '/images/1.jpg'
+                }, {
+                    id: 2,
+                    title: '2.jpg',
+                    imgPath: '/images/2.jpg'
+                }, {
+                    id: 3,
+                    title: '3.jpg',
+                    imgPath: '/images/3.jpg'
+                }, {
+                    di: 4,
+                    title: '4.jpg',
+                    imgPath: '/images/4.jpg'
+                }],
+            },
+            methods: {
+                handel: function(index) {
+                    this.currentIndex = index
+                }
+            },
+        });
+    </script>
+</body>
+
+</html>
