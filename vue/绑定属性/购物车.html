@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #app table {
+            width: 500px;
+            border: 2px solid #000;
+            border-collapse: collapse;
+            margin: 0 auto;
+        }
+        
+        #app table th,
+        td {
+            border: 2px solid #000;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div v-if="books.length">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>书籍名称</th>
+                        <th>出版日期</th>
+                        <th>价格</th>
+                        <th>购买数量</th>
+                        <th>小计</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="(item,index) in books">
+                        <td>{{item.id}}</td>
+                        <td>{{item.name}}</td>
+                        <td>{{item.date}}</td>
+                        <td>{{item.price | showPrice}}</td>
+                        <td>
+                            <button @click="decrement(index)" v-bind:disabled="item.count<=1">-</button> {{item.count}}
+                            <button @click="increment(index)">+</button>
+                        </td>
+                        <td>{{item.smallPrice | showPrice}}</td>
+                        <td><button @click="removeBook(index)">移除</button></td>
+                    </tr>
+                </tbody>
+            </table>
+            <h2>总价格为：{{totalPrice | showPrice}}</h2>
+        </div>
+        <h2 v-else>购物车为空</h2>
+    </div>
+
+
+    <script src="/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                books: [{
+                    id: 1,
+                    name: '算法导论',
+                    date: '2006-1',
+                    price: 100,
+                    count: 1,
+                    smallPrice: 100,
+                }, {
+                    id: 2,
+                    name: '编程基础',
+                    date: '2001-2',
+                    price: 200,
+                    count: 1,
+                    smallPrice: 200,
+                }, {
+                    id: 3,
+                    name: '代码大全',
+                    date: '2010-3',
+                    price: 300,
+                    count: 1,
+                    smallPrice: 300,
+                }, {
+                    id: 4,
+                    name: 'JavaScript高级',
+                    date: '2022-4',
+                    price: 400,
+                    count: 1,
+                    smallPrice: 400,
+                }],
+            },
+            methods: {
+                increment(index) {
+                    //console.log(index);
+                    this.books[index].count++; //指定count++  点击那个加号，哪一行增加
+                    this.books[index].smallPrice = this.books[index].count * this.books[index].price;
+                },
+                decrement(index) {
+                    this.books[index].count--;
+                    this.books[index].smallPrice = this.books[index].count * this.books[index].price;
+                },
+                removeBook(index) {
+                    this.books.splice(index, 1);
+                }
+
+            },
+            computed: {
+                totalPrice() {
+                    let totalPrice = 0;
+                    // for (let i = 0; i < this.books.length; i++) {
+                    //     totalPrice += this.books[i].price * this.books[i].count;
+                    // }
+                    // return totalPrice;
+
+
+                    // for (let i in this.books) {
+                    //     //console.log(this.books[i]);
+                    //     totalPrice += this.books[i].price * this.books[i].count;
+                    // }
+                    // return totalPrice;
+
+
+                    // for (let i of this.books) {
+                    //     //console.log(i);
+                    //     totalPrice += i.price * i.count;
+                    // }
+                    // return totalPrice;
+
+
+                    //计算总价用 reduce（第一个参数，第二个参数，第三个参数）
+                    //第一个参数为初始值，可以用第三个参数给第一个参数赋值；第二个参数为这个数组
+                    //的  value
+                    return this.books.reduce((previousValie, book) => {
+                        //console.log(book);
+                        return previousValie + book.price * book.count;
+                    }, 0);
+                }
+            },
+            filters: {
+                showPrice(price) {
+                    return `￥${price.toFixed(2)}`;
+                }
+            },
+        });
+    </script>
+</body>
+
+</html>
