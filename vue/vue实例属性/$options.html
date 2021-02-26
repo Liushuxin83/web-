@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <p>$options <small>获取vue实例属性，包含自定义属性</small></p>
+        <button type="button" @click="show">查看</button> {{mydata}}
+    </div>
+</body>
+<script src='/vue.js '></script>
+<script type="text/javascript">
+    // $options:获取vue实例属性，包含自定义属性
+    // Vue实例初始化时，除了传入指定的属性外，还可以传入自定义属性。自定义的属性可以是数组、对象、函数等，通过Vm.$options来获取。
+    let vm = new Vue({
+        el: "#app",
+        data: {
+            msg: "aaa"
+        },
+        cust: "我是自定义属性",
+        methods: {
+            show() {
+                console.log(this.$options)
+            }
+        },
+        created() {
+            this.mydata = this.$options.cust; //this.$opeions.cust获得自定义属性cust的数据
+        }
+    })
+</script>
+
+</html>

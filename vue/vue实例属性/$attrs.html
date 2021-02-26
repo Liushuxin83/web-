@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <my-cpn style="color: red;" a="a" class="abc" id="dd" name="abc" txt="msg"></my-cpn>
+    </div>
+</body>
+<script src='/vue.js '></script>
+<script>
+    // $attrs
+    // 可以获取组件的属性，但其获取的属性中不包含class、style以及被声明为props的属性。
+    //应用场景https://www.cnblogs.com/wuxianqiang/p/10452662.html
+    Vue.component("my-cpn", {
+        template: `<div>
+									<button @click="show">查看组件属性</button>
+									<p>我是父组件传来的值:{{txt}}</p>
+							</div>`,
+        props: ["txt"],
+        methods: {
+            show() {
+                console.log(this.$attrs);
+            }
+        }
+
+    });
+
+    let vm = new Vue({
+        el: "#app",
+        data: {
+            msg: "我是父组件的数据"
+        }
+    });
+</script>
+
+</html>

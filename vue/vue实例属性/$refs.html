@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id='app'>
+        {{message}}
+    </div>
+    <script src='/vue.js '></script>
+    <script>
+        // 1.ref加载普通的元素上，用this.refs.(ref值)则可以获取dom元素
+        // 2.ref加在子组件上，用this.refs.(ref值)获取到的是组件实例，可以使用组件的所有方法
+        // 3.ref需要在dom渲染完成之后才会有，在使用的时候要确保dom已经渲染完成。比如在mounted中调用，或者在this.$nextTick(()=>{})中调用
+        // 4.如果ref是循环出来的，有多个重名，那么ref的值会是一个数组，此时要拿到单个ref需要使用循环遍历
+        const app = new Vue({
+            el: '#app',
+            data: {
+                message: '123',
+            },
+            mounted() {
+                console.log(this);
+            },
+        });
+    </script>
+</body>
+
+</html>

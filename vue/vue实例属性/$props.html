@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<div id="app">
+    <p>vm.$props <small>接收上级组件向下传递的数据</small></p>
+    <my-component :txt="msg" name="aaa"></my-component>
+</div>
+
+<body>
+    <script src='/vue.js '></script>
+
+    <script>
+        // $props：使用这个属性可以接受上级组件向下级组件传递的数据
+        Vue.component("my-component", {
+            template: `<p @click="fun">传过来的数据：{{txt}}</p>`,
+            props: ["txt", "name"],
+            methods: {
+                fun() {
+                    console.log(this.$props);
+                }
+            }
+        });
+        let vm = new Vue({
+            el: "#app",
+            data: {
+                msg: "我是要传过去的数据"
+            }
+        });
+    </script>
+</body>
+
+</html>

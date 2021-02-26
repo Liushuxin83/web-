@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <!-- $el可以查到这个div的所有内容 -->
+        <p>vm.$el<small>vue实例的根doom元素</small></p>
+        <button @click="watch">查看</button>
+    </div>
+</body>
+<script src='/vue.js '></script>
+<script type="text/javascript">
+    // $el用来访问vm实例使用的根DOM元素
+    let vm = new Vue({
+        el: "#app",
+        methods: {
+            watch() {
+                console.log(this.$el)
+            }
+        }
+    });
+</script>
+
+</html>
