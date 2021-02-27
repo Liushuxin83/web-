@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <!-- 需求：输入框输入用户名，失去焦点时验证是否存在，如果已经存在，提示从新输入，如果不存在，提示可以使用 -->
+    <!-- 1.通过v-model实现数据绑定
+    2.需要提供提示信息
+    3.需要侦听器监听输入信息的变化
+    4.需要修改触发事件为 change -->
+    <!-- 侦听器：
+    1.采用侦听器监听用户名的变化
+    2.调用后台接口进行用户验证 -->
+    <!-- 3.根据验证的结果调整提示信息 -->
+    <div id='app'>
+        用户名：<input type="text" v-model.lazy="uname">
+        <span>{{tip}}</span>
+    </div>
+    <script src='/vue.js '></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                uname: '',
+                tip: '',
+            },
+            methods: {
+                checkName(uname) {
+                    // 用定时器模拟后台接口
+                    setTimeout(() => {
+                        if (uname == 'admin') {
+                            this.tip = '用户名已经存在,请更换一个';
+                        } else {
+                            this.tip = '用户名可以使用';
+                        }
+                    }, 2000);
+                },
+            },
+            watch: {
+                //监听指定数据的变化  这里是侦听uname
+                uname(val) {
+                    //val表示当前的最新值
+                    this.checkName(val);
+                    this.tip = '正在验证。。。';
+                }
+            },
+        });
+    </script>
+</body>
+
+</html>

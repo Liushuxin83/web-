@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id='app'>
+        <input type="text" v-model="message">
+        <br>
+        <span>{{message | upper}}</span>
+        <!-- 在DOM中  abc这个属性会生效  这是过滤器在属性绑定中的使用 -->
+        <div :abc="message | upper">测试数据</div>
+    </div>
+    <script src='/vue.js '></script>
+    <script>
+        // Vue.filter('upper', function(text) {
+        //     console.log(text);
+        //     return text.charAt(0).toUpperCase() + text.slice(1);
+        // });
+        const app = new Vue({
+            el: '#app',
+            data: {
+                message: '',
+            },
+            //注意这里的过滤器 加了s 这里是复数
+            filters: {
+                upper(text) {
+                    console.log(text);
+                    return text.charAt(0).toUpperCase() + text.slice(1);
+                }
+            },
+        });
+    </script>
+</body>
+
+</html>
