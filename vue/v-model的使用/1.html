@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id='app'>
+        <label for="a">{{mytext}}</label>
+        <input type="text" id="a" v-model="mytext">
+        <ul>
+            <li v-for="v in search">{{v}}</li>
+        </ul>
+    </div>
+    <script src='/vue.js '></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                mytext: '',
+                lists: [{
+                    beijing: '北京'
+                }, {
+                    hebei: '河北'
+                }],
+                lis: 'woaini',
+            },
+            mounted() {
+                console.log(Object.getOwnPropertyNames(this.lists[0]));
+                console.log(this.lis[1, 5, 2]);
+            },
+            computed: {
+                search() {
+                    if (this.mytext !== '') {
+                        return this.lists.filter(item => item.includes(this.mytext))
+                    }
+
+                }
+            },
+        });
+    </script>
+</body>
+
+<script>
+    var obj = {
+        age: 10,
+        sex: "男",
+        name: "bob"
+    };
+    Object.getOwnPropertyNames(obj).forEach(function(val) {
+        console.log(val, '遍历的值'); // age sex name 拿到的是实际是对象的键key
+    });
+</script>
+
+</html>
