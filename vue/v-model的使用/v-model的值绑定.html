@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div id='app'>
+        <hr>
+        <!-- <label v-for="item in originHobbies">
+          <input type="checkbox" :value="item" v-model="hobbies">{{item}}
+        </label>
+        <h2>您的爱好是：{{hobbies}}</h2> -->
+
+
+        <label v-for="item in originHobbies" :for="item">
+          <input type="checkbox" :value="item" v-model="hobbies" :id="item">{{item}}
+        </label>
+        <h2>您的爱好是：{{hobbies}}</h2>
+    </div>
+    <script src='/vue.js '></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                message: '123',
+                isAgree: false,
+                hobbies: [],
+                originHobbies: ['足球', '乒乓球', '羽毛球', '蓝球'], //设置原始的input的value，使其动态化
+            }
+        });
+    </script>
+</body>
+
+</html>
