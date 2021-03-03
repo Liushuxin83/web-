@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id='app'>
+        <input type="text" v-color="message" v-focus>
+    </div>
+    <script src='/vue.js '></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                message: 'red',
+            },
+            directives: {
+                //v-名称
+                color: {
+                    inserted(el, binding, vnode) {
+                        console.log(binding.value);
+                        //根据指令的参数设置背景色
+                        el.style.backgroundColor = binding.value;
+                    },
+                },
+                focus: {
+                    inserted(el, binding, vnode) {
+                        el.focus();
+                    },
+                },
+            },
+        });
+    </script>
+</body>
+
+</html>
