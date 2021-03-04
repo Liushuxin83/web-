@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        li {
+            list-style: none;
+        }
+        
+        .footer li {
+            float: left;
+            margin-right: 20px;
+            font-size: 20px;
+            color: red;
+            border: 1px solid #000;
+        }
+        
+        .footer {
+            margin-top: 500px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id='app'>
+
+        <keep-alive>
+            <component :is="isWhich"></component>
+        </keep-alive>
+        <div class="footer">
+            <ul>
+                <li @click="isWhich='home'">首页</li>
+                <li @click="isWhich='list'">列表</li>
+                <li @click="isWhich='shop'">购物车</li>
+            </ul>
+        </div>
+    </div>
+    <script src='/vue.js '></script>
+    <script>
+        Vue.component('home', {
+            template: `
+        <div>首页<input type="text"></div>
+        `,
+        });
+        Vue.component('list', {
+            template: `
+        <div>列表</div>
+        `,
+        });
+        Vue.component('shop', {
+            template: `
+        <div>购物车</div>
+        `,
+        });
+        const app = new Vue({
+            el: '#app',
+            data: {
+                isWhich: 'home',
+            }
+        });
+    </script>
+</body>
+
+</html>

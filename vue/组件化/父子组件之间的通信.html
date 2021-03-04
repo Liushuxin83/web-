@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id='app'>
+        <!-- 在没有绑定属性时，默认值会被使用 -->
+        <cpn :cmessage="message" v-bind:cmovies="movies"></cpn>
+    </div>
+    <template id="cpn">
+      <div>
+<ul>
+  <li v-for="item in cmovies">{{item}}</li>
+</ul>
+<h2>{{cmessage}}</h2>
+      </div>
+    </template>
+    <script src='/vue.js '></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                message: '123',
+                movies: ['华为', '小米', '苹果'],
+            },
+            components: {
+                cpn: {
+                    template: '#cpn',
+                    data() {
+                        return {
+
+                        }
+                    },
+                    // props: ['cmovies', 'cmessage'],
+                    props: {
+                        // cmessage: String,
+                        // cmovies: Array,
+
+                        //类型是数组或者对象时，默认值必须是一个函数
+                        cmovies: {
+                            type: Array,
+                            default () {
+                                return [];
+                            },
+                        },
+                        cmessage: {
+                            type: String,
+                            default: '111',
+                            //表示cmessage这个属性必须绑定在组件上
+                            required: true,
+                        },
+                    },
+                },
+            },
+        });
+    </script>
+</body>
+
+</html>
