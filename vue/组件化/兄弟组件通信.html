@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id='app'>
+        <App></App>
+    </div>
+
+    <template id="myapp">
+      <div>
+        <aa></aa>
+        <bb></bb>
+      </div>
+    </template>
+    <template id="mya">
+      <div>
+        {{count}}
+      </div>
+    </template>
+
+    <template id="myb">
+      <div>
+        <button @click="handleClick">加入购物车</button>
+      </div>
+    </template>
+    <script src='/vue.js '></script>
+    <script>
+        //加入购物车 一个组件有个按钮（加入购物车）另外一个组件是数量
+        let bus = new Vue();
+
+        Vue.component('aa', {
+            data() {
+                return {
+                    count: 0,
+                }
+            },
+            template: '#mya',
+            created() {
+                // $on绑定事件
+                console.log(this);
+                bus.$on('add', (n) => {
+                    this.count += n;
+                });
+
+            },
+
+        });
+
+        Vue.component('bb', {
+            template: '#myb',
+            methods: {
+                handleClick() {
+                    console.log(this);
+                    //触发事件
+                    bus.$emit('add', 1);
+                },
+            },
+        });
+
+        const App = {
+            template: '#myapp',
+            data() {
+                return {
+
+                }
+            },
+        };
+        const app = new Vue({
+            el: '#app',
+            components: {
+                App
+            },
+
+        });
+    </script>
+</body>
+
+</html>
