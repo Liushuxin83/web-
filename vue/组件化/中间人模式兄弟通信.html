@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .films {
+        width: 200px;
+        height: 80px;
+        font-size: 20px;
+        border: 2px solid #000;
+        color: red;
+    }
+    
+    .state {
+        position: fixed;
+        right: 100px;
+        top: 100px;
+        width: 500px;
+        height: 300px;
+        background-color: pink;
+    }
+</style>
+
+<body>
+    <div id='app'>
+        <button @click="getData">ajax</button>
+        <film-item :key="item.id" v-for="item in dataList" :films="item" @stateclick="fuStateClick"></film-item>
+        <film-state :s="infoState"></film-state>
+    </div>
+    <script src='/vue.js '></script>
+    <script>
+        Vue.component('filmState', {
+            template: `
+       <div class="state">
+        {{s}}
+        </div>
+       `,
+            props: ['s'],
+        });
+        Vue.component('filmItem', {
+            template: `
+       <div class="films">
+        {{films.name}}
+        <button @click="stateClick">详情</button>
+        </div>
+       `,
+            props: {
+                films: {
+                    type: Object,
+                    default () {
+                        return [];
+                    }
+                }
+            },
+            methods: {
+                stateClick() {
+                    //console.log(this.films);\
+                    this.$emit('stateclick', this.films.state);
+                }
+            },
+        });
+        const app = new Vue({
+            el: '#app',
+            data: {
+                dataList: [],
+                infoState: '',
+            },
+            methods: {
+                getData() {
+                    fetch('./text.json').then(res => res.json()).then(res => {
+                        //console.log(res.data.films);
+                        this.dataList = res.data.films;
+                    })
+                },
+                fuStateClick(data) {
+                    // console.log(data);
+                    this.infoState = data;
+                }
+            },
+        });
+    </script>
+</body>
+
+</html>
