@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id='app'>
+        <App></App>
+    </div>
+    <template id="cpnTwo">
+  <div>
+    <button>按钮</button>
+    <h2>{{message}}</h2>
+  </div>
+</template>
+    <template id="cpn">
+      <div>
+        123
+        <Bpp></Bpp>
+      </div>
+    </template>
+    <script src='/vue.js '></script>
+    <script>
+        //父组件 provide来提供变量，然后子组件通过inject来注入变量，无论变量嵌套的组件有多深
+        const Bpp = {
+            template: '#cpnTwo',
+            inject: ['message'],
+            created() {
+                console.log(this.message);
+            },
+        };
+        const App = {
+            template: "#cpn",
+            data() {
+                return {
+                    msg: '我是父组件的数据'
+                }
+            },
+            provide() {
+                return {
+                    message: this.msg,
+                }
+            },
+            components: {
+                Bpp
+            },
+        };
+        const app = new Vue({
+            el: '#app',
+            data: {
+
+            },
+            components: {
+                App,
+            },
+        });
+    </script>
+</body>
+
+</html>

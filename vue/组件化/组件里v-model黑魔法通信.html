@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id='app'>
+        <my-input type="text" title="用户名" v-model="userName"></my-input>
+        <my-input type="password" title="密码" v-model="password"></my-input>
+
+
+        <button @click="submitClick">提交</button> <button @click="reset">重置</button>
+    </div>
+    <script src='/vue.js '></script>
+    <script>
+        Vue.component('my-input', {
+            props: ['type', 'title', 'value'],
+            template: `
+            <div>
+            <label>{{title}}</label>
+       <input :type="type" style="background:red" @input="handelClick" :value="value">
+       </div>
+       `,
+            methods: {
+                handelClick(e) {
+                    //console.log(e.target.value);
+                    this.$emit('input', e.target.value);
+                }
+            },
+        });
+        const app = new Vue({
+            el: '#app',
+            data: {
+                userName: 'default',
+                password: '',
+            },
+            methods: {
+                submitClick() {
+                    console.log(this.userName, this.password);
+                },
+                reset() {
+                    this.userName = '';
+                    this.password = '';
+                }
+            },
+        });
+    </script>
+</body>
+
+</html>
