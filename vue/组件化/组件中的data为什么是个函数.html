@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div id='app'>
+        <cpn></cpn>
+        <cpn></cpn>
+        <cpn></cpn>
+    </div>
+    <template id="cpn">
+      <div>
+        <h2>当前计数:{{counter}}</h2>
+        <button @click="incement">+</button>
+        <button @click="decrment">-</button>
+      </div>
+    </template>
+    <script src='/vue.js '></script>
+    <script>
+        const object = {
+            counter: 0,
+        };
+        Vue.component('cpn', {
+            template: '#cpn',
+            // data() {
+            //     return {
+            //         counter: 0,
+            //     }
+            // },
+            data() {
+                return object;
+            },
+            methods: {
+                incement() {
+                    this.counter++;
+                },
+                decrment() {
+                    this.counter--;
+                }
+            },
+        });
+        const app = new Vue({
+            el: '#app',
+            data: {
+                message: '123',
+            }
+        });
+    </script>
+
+
+    <script>
+        //这样不是同一个对象
+        // function abc() {
+        //     return {
+        //         name: '刘舒新',
+        //         age: 111,
+        //     }
+        // }
+
+        //这样是同一个对象
+        const obj = {
+            name: '刘舒新',
+            age: 111,
+        };
+
+        function abc() {
+            //这里返回的是obj的内存地址
+            return obj;
+        }
+        let obj1 = abc();
+        let obj2 = abc();
+        let obj3 = abc();
+        obj1.name = '刘';
+        console.log(obj2.name);
+        console.log(obj2.name);
+    </script>
+</body>
+
+</html>
