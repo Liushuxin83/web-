@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id='app'>
+        <App></App>
+    </div>
+    <script src='../vue.js '></script>
+    <script>
+        const todoList = {
+            data() {
+                return {
+
+                }
+            },
+            props: {
+                todos: {
+                    type: Array,
+                    dafault() {
+                        return [];
+                    }
+                },
+            },
+            template: `
+            <ul>
+              <li :key="item.id" v-for="item in todos">
+                <slot :abc="item"></slot>
+                {{item.title}}</li>
+              </ul>
+            `,
+        };
+        const App = {
+            data() {
+                return {
+                    todoList: [{
+                        id: 1,
+                        title: '第一天',
+                        isComplete: false
+                    }, {
+                        id: 2,
+                        title: '第二天',
+                        isComplete: false
+                    }, {
+                        id: 3,
+                        title: '第三天',
+                        isComplete: false
+                    }, {
+                        id: 4,
+                        title: '第四天',
+                        isComplete: false
+                    }],
+                }
+            },
+            components: {
+                todoList
+            },
+            template: `
+            <todoList :todos="todoList">
+              // <template v-slot="data">
+              //   <input type="checkbox" v-model="data.abc.isComplete"></input>
+              // </template>
+
+              // 这意味着 v-slot 的值实际上可以是任何能够作为函数定义中的参数的 JavaScript 表达式。你也可以使用 ES2015 解构来传入具体的插槽 prop，如下：
+              // <template v-slot="{abc}">
+              //   <input type="checkbox" v-model="abc.isComplete"></input>
+              // </template>
+
+              // 这样可以使模板更简洁，尤其是在该插槽提供了多个 prop 的时候。它同样开启了 prop 重命名等其它可能，例如将 abc 重命名为 todo：
+              <template v-slot="{abc:todo}">
+                <input type="checkbox" v-model="todo.isComplete"></input>
+              </template>
+            </todoList>
+            `,
+        };
+        const app = new Vue({
+            el: '#app',
+            data: {
+
+            },
+            components: {
+                App
+            },
+        });
+    </script>
+</body>
+
+</html>

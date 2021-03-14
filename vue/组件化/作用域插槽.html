@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id='app'>
+        <cpn></cpn>
+        <cpn>
+            <!-- 目的是获取子组件中的pLanguage -->
+            <template slot-scope="a">
+              <!-- <span v-for="item in a.data">{{item}}</span> -->
+              <!-- <span v-for="item in a.data">{{a.data.join('-')}}</span> -->
+              <span>{{a.data.join('-')}}</span>
+              
+            </template>
+        </cpn>
+        <cpn></cpn>
+    </div>
+    <template id="cpn">
+      <div>
+				<!-- 这是插槽中的默认内容，如果组件中有其它内容，会把该内容覆盖 -->
+        <slot :data="PLanguage">
+          <ul>
+            <li v-for="item in PLanguage">{{item}}</li>
+          </ul>
+        </slot>
+      </div>
+    </template>
+    <script src='/vue.js '></script>
+    <script>
+        //父组件替换插槽的标签，但是内容由子组件来提供
+        const app = new Vue({
+            el: '#app',
+            data() {
+                return {
+
+                }
+            },
+            components: {
+                cpn: {
+                    template: '#cpn',
+                    data() {
+                        return {
+                            PLanguage: ['JavaScript', 'Java', 'C++', 'PHP'],
+                        }
+                    },
+                },
+            },
+        });
+    </script>
+</body>
+
+</html>
