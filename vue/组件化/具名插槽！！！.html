@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id='app'>
+        <cpn>
+            <template v-slot:left><a href="#">left</a></template>
+            <template v-slot:center><a href="#">center</a></template>
+            <template #right><a href="#">right</a></template>
+        </cpn>
+
+        <cpn>
+            <template v-slot:center>center</template>
+        </cpn>
+        <cpn>
+            <template v-slot:right>right</template>
+        </cpn>
+        <cpn>
+            <template v-slot:left>left</template>
+        </cpn>
+    </div>
+
+    <template id="cpn">
+      <div>
+        <button>
+    
+    <slot name="center"></slot>
+    <slot name="left"></slot>
+    <slot name="right"></slot>
+    </button>
+    </div>
+    </template>
+    <script src='/vue.js '></script>
+    <script>
+        const cpn = {
+            template: '#cpn',
+        }
+        const app = new Vue({
+            el: '#app',
+            data: {
+
+            },
+            components: {
+                cpn
+            },
+        });
+    </script>
+</body>
+
+</html>
