@@ -1,0 +1,65 @@
+{
+  "id": "2363531",
+  "name": "vue电影APP",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "180897",
+      "name": "电影",
+      "font_class": "dianying",
+      "unicode": "e605",
+      "unicode_decimal": 58885
+    },
+    {
+      "icon_id": "4933212",
+      "name": "电影",
+      "font_class": "dianying1",
+      "unicode": "e6ee",
+      "unicode_decimal": 59118
+    },
+    {
+      "icon_id": "7463927",
+      "name": "我的",
+      "font_class": "wode",
+      "unicode": "e626",
+      "unicode_decimal": 58918
+    },
+    {
+      "icon_id": "8922379",
+      "name": "电影院",
+      "font_class": "dianyingyuan",
+      "unicode": "e610",
+      "unicode_decimal": 58896
+    },
+    {
+      "icon_id": "19762286",
+      "name": "右",
+      "font_class": "you-xi",
+      "unicode": "e620",
+      "unicode_decimal": 58912
+    },
+    {
+      "icon_id": "19762287",
+      "name": "左",
+      "font_class": "zuo-xi",
+      "unicode": "e621",
+      "unicode_decimal": 58913
+    },
+    {
+      "icon_id": "19762290",
+      "name": "上",
+      "font_class": "shang-xi",
+      "unicode": "e622",
+      "unicode_decimal": 58914
+    },
+    {
+      "icon_id": "19762292",
+      "name": "下",
+      "font_class": "xia-xi",
+      "unicode": "e623",
+      "unicode_decimal": 58915
+    }
+  ]
+}
