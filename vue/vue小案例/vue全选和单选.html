@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #app table {
+            width: 700px;
+            border: 1px solid #000;
+            border-collapse: collapse;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        #app table th,
+        td {
+            border: 1px solid #000;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <div id='app'>
+        <table>
+            <thead>
+                <tr>
+                    <th><input type="checkbox" v-model="checkAll" @change="all">{{checkAll}}</th>
+                    <th>ID</th>
+                    <th>用户姓名</th>
+                    <th>性别</th>
+                    <th>身价</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="(val,index) in lists">
+                    <td><input type="checkbox" v-model="val.checked" @change="currentOne">{{val.checked}}</td>
+                    <td>{{val.id}}</td>
+                    <td>{{val.name}}</td>
+                    <td>{{val.sex}}</td>
+                    <td>{{val.price}}</td>
+                    <td><button>删除</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <script src='../vue.js '></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                checkAll: false, //全选状态的变量
+                lists: [],
+            },
+            methods: {
+                all() { //全选的改变事件
+                    for (let i = 0; i < this.lists.length; i++) {
+                        this.lists[i].checked = this.checkAll;
+                    }
+
+
+
+                    // for (let k of this.lists) {
+                    //     //console.log(k);
+                    //     k.checked = this.checkAll;
+                    // }
+                },
+                currentOne() {
+                    //取出当前选中的状态
+                    //第一种方式
+                    // let newArr = this.lists.filter((val) => {
+                    //     //fliter返回数组
+                    //     return val.checked == true;
+                    // });
+                    // console.log(newArr.length);
+                    // if (newArr.length == this.lists.length) {
+                    //     this.checkAll = true;
+                    // } else {
+                    //     this.checkAll = false;
+                    // }
+
+
+                    //第二种方式
+                    // every检测数组所有元素，只要有一个不满足条件就会返回false，全满足条件返回true，！！！！而some只有数组中只要有一个满足条件就会返回true
+                    this.checkAll = this.lists.every((val) => {
+                        return val.checked
+                    });
+                },
+            },
+            mounted() {
+                let endData = [{
+                    id: 1,
+                    name: '张一',
+                    sex: '男',
+                    price: 10,
+                    checked: false,
+                }, {
+                    id: 2,
+                    name: '张二',
+                    sex: '男',
+                    price: 20,
+                    checked: false,
+                }, {
+                    id: 3,
+                    name: '张三',
+                    sex: '女',
+                    price: 30,
+                    checked: false,
+                }, {
+                    id: 4,
+                    name: '张四',
+                    sex: '女',
+                    price: 40,
+                    checked: false,
+                }, {
+                    id: 5,
+                    name: '张五',
+                    sex: '男',
+                    price: 50,
+                    checked: false,
+                }];
+                this.lists = endData;
+            },
+        });
+    </script>
+</body>
+
+</html>
