@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id='app'> {{province}}省:
+        <select v-model="province" @change="updateCity();updateArea()">
+  <option :key="index" v-for="(item,index) in lists">{{item.name}}</option>
+</select> &nbsp; &nbsp; 市:{{city}}
+        <select v-model="city" @change="updateArea()">
+  <option :key="index" v-for="(item,index) in cityArr">{{item.name}}</option>
+</select> &nbsp; &nbsp;区:
+        <select v-model="area" v-if="area">
+  <option :key="index" v-for="(item,index) in areaArr">{{item.name}}</option>
+</select>
+    </div>
+    <script src="../vue.js" type="text/javascript" charset="utf-8"></script>
+    <script>
+        const dataArr = [{
+            name: '北京',
+            sub: [{
+                name: '请选择',
+                sub: [],
+            }, {
+                name: '北京',
+                sub: [{
+                    name: '请选择'
+                }, {
+                    name: '东城区'
+                }, {
+                    name: '西城区'
+                }, {
+                    name: '崇文区'
+                }],
+            }],
+        }, {
+            name: '广东省',
+            sub: [{
+                name: '请选择',
+                sub: [],
+            }, {
+                name: '深圳',
+                sub: [{
+                    name: '请选择'
+                }, {
+                    name: '福田区'
+                }, {
+                    name: '罗湖区'
+                }, {
+                    name: '南山区'
+                }],
+            }, {
+                name: '广州',
+                sub: [{
+                    name: '请选择'
+                }, {
+                    name: '越秀区'
+                }, {
+                    name: '海珠区'
+                }, {
+                    name: '荔湾区'
+                }],
+            }, {
+                name: '汕头',
+                sub: [{
+                    name: '请选择'
+                }, {
+                    name: '金平区'
+                }, {
+                    name: '濠江区'
+                }, {
+                    name: '龙湖区'
+                }],
+            }],
+        }, {
+            name: '河北省',
+            sub: [{
+                name: '请选择',
+                sub: []
+            }, {
+                name: '保定市',
+                sub: [{
+                    name: '请选择'
+                }, {
+                    name: '易县'
+                }, {
+                    name: '满城县'
+                }],
+            }, {
+                name: '石家庄市',
+                sub: [{
+                    name: '请选择'
+                }, {
+                    name: '裕华区'
+                }, {
+                    name: '朝阳区'
+                }, {
+                    name: '恒大区'
+                }],
+            }],
+        }, ];
+        const app = new Vue({
+            el: '#app',
+            data: {
+                lists: dataArr,
+                province: '北京', //当前选择的省
+                city: '', //当前选择的市
+                cityArr: [], //市的数据
+                areaArr: [], //区的数据
+                area: ''
+            },
+            methods: {
+                updateCity() {
+                    this.lists.forEach((val, index) => {
+                        //console.log(this);
+                        if (val.name == this.province) {
+                            this.cityArr = val.sub;
+                            console.log(this.cityArr);
+                        }
+                    });
+                    this.city = this.cityArr[1].name;
+                    // this.updateArea();
+
+
+                    // this.lists.forEach(function(val, index) {
+                    //     console.log(this); //如果不写箭头函数的话，这样的this会指向window
+                    // });
+                },
+                updateArea() {
+                    this.cityArr.forEach((val) => {
+                        if (val.name == this.city) {
+                            this.areaArr = val.sub;
+                            console.log(this.areaArr);
+                        }
+                    });
+                    if (this.areaArr && this.areaArr.length > 0) {
+                        this.area = this.areaArr[1].name;
+                    } else {
+                        this.area = '';
+                    }
+                },
+            },
+            mounted() {
+                this.updateCity();
+                this.updateArea();
+            },
+
+        });
+    </script>
+</body>
+
+</html>

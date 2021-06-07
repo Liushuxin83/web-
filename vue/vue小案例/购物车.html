@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table {
+            width: 500px;
+            margin: 0 auto;
+            border: 1px solid #000;
+            border-collapse: collapse;
+            text-align: center;
+        }
+        
+        table th,
+        td {
+            border: 1px solid #000;
+        }
+    </style>
+</head>
+
+<body>
+    <div id='app'>
+        <table>
+            <thead>
+                <tr>
+                    <th><input type="checkbox" v-model="isAll" @change="checkAll">全选/全不选</th>
+                    <th>商品名称</th>
+                    <th>商品价格</th>
+                    <th>商品数量</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="(v,i) in lists" ::key="v.id">
+                    <td><input type="checkbox" v-model="checkGroup" :value="v" @change="checkOne"></td>
+                    <td>{{v.name}}</td>
+                    <td>{{v.price}}</td>
+                    <td>
+                        <button @click="v.num--" :disabled="v.num===1">-</button> {{v.num}}
+                        <button @click="v.num++" :disabled="v.num===v.limit">+</button>
+                    </td>
+                    <td><button @click="del(i,v.id)">删除</button></td>
+                </tr>
+            </tbody>
+        </table>
+        {{checkGroup}}
+        <div>总额：{{sum()}}</div>
+    </div>
+    <script src='/vue.js '></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                isAll: false,
+                checkGroup: [],
+                lists: [{
+                    id: 1,
+                    name: '商品1',
+                    price: 10,
+                    num: 1,
+                    limit: 5
+                }, {
+                    id: 2,
+                    name: '商品2',
+                    price: 20,
+                    limit: 5,
+                    num: 1,
+                }, {
+                    id: 3,
+                    name: '商品3',
+                    price: 30,
+                    limit: 5,
+                    num: 1,
+                }, {
+                    id: 4,
+                    name: '商品4',
+                    price: 40,
+                    limit: 5,
+                    num: 1,
+                }],
+            },
+            methods: {
+                sum() {
+                    // let sum = 0;
+                    // this.checkGroup.forEach((value) => {
+                    //     sum += value.price * value.num;
+                    // });
+                    // return sum;
+
+
+                    return this.checkGroup.reduce((previousValue, value) => {
+                        console.log(this.checkGroup);
+                        console.log(value);
+                        return previousValue += value.price * value.num;
+                    }, 0);
+                },
+                del(i, id) {
+                    // console.log(i);
+                    //删除原数组
+                    this.lists.splice(i, 1);
+                    //得删除checkGroup数组中对应的元素
+                    this.checkGroup = this.checkGroup.filter((value) => {
+                        return value.id !== id;
+                    });
+
+
+                    //这个checkOne在点删除事件的时候也要判定一次
+                    this.checkOne();
+                },
+                checkAll() {
+                    if (this.isAll) {
+                        this.checkGroup = this.lists;
+                    } else {
+                        this.checkGroup = [];
+                    }
+                },
+                checkOne() {
+                    if (this.checkGroup.length === this.lists.length && this.lists.length !== 0) {
+                        this.isAll = true;
+                    } else {
+                        this.isAll = false;
+                    }
+                },
+            },
+        });
+    </script>
+</body>
+
+</html>
