@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>
+		/* 媒体查询语法 可以根据不同的屏幕尺寸改变不同的样式   mediatype查询类型 all用于所有设备 print打印机 scree用于电脑屏幕手机等*/
+		/* media feature  有width定义设备页面可视区域宽度   min-width    max-width */
+		/* @media mediatype and|not|only (media feature) {
+			
+		} */
+
+		/* 在屏幕上并且最大宽度是800px可以设置想要的样式 */
+		@media screen and (max-width:800px) {
+			body {
+				background-color: pink;
+			}
+		}
+
+		@media screen and (max-width:500px) {
+			body {
+				background-color: purple;
+			}
+		}
+	</style>
+</head>
+
+<body>
+
+</body>
+
+</html>
